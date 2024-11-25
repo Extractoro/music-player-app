@@ -1,0 +1,4 @@
+@import "./utils/reset.css";
+@import "partials/home.css";
+@import "./partials/registration.css";
+@import "./partials/login.css";
