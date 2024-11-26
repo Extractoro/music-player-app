@@ -242,11 +242,13 @@
     padding-bottom: 8px;
     box-sizing: border-box;
     user-select: none;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
 }
 
 .main-tracks--container-wrapper::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 5px;
+    height: 5px;
 }
 
 .main-tracks--container-wrapper::-webkit-scrollbar-track {
@@ -271,7 +273,6 @@
 .main-tracks--container {
     display: inline-flex;
     gap: 16px;
-    scroll-snap-type: x mandatory;
 }
 
 .main-tracks--card {
@@ -367,5 +368,9 @@
 
     .main-header {
         justify-content: flex-end;
+    }
+
+    .main-tracks--container-wrapper {
+        scroll-snap-type: none;
     }
 }
