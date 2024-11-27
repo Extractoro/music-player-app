@@ -3,11 +3,12 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from "dotenv";
 import morgan from "morgan";
+import authRouter from './routes/auth.js';
 
 dotenv.config();
 
 const app = express();
-const allowedUrls = ['', 'http://localhost:5173'];
+const allowedUrls = ['', 'http://localhost:1234'];
 
 app.use(cors({
     origin: function (origin, callback) {
@@ -25,6 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(morgan('tiny'));
+
+app.use('/auth', authRouter)
 
 app.listen(process.env.PORT || 7070, () => {
     console.log(`The application is listening on port ${process.env.PORT || 7070}!`);
