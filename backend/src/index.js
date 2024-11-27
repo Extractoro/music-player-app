@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import dotenv from "dotenv";
 import morgan from "morgan";
 import authRouter from './routes/auth.js';
+import performerRouter from './routes/performer.js';
 
 dotenv.config();
 
@@ -27,7 +28,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(morgan('tiny'));
 
-app.use('/auth', authRouter)
+app.use('/auth', authRouter);
+app.use('/performer', performerRouter);
 
 app.listen(process.env.PORT || 7070, () => {
     console.log(`The application is listening on port ${process.env.PORT || 7070}!`);
