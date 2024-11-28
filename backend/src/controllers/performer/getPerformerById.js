@@ -41,7 +41,6 @@ export const getPerformerByIdController = async (req, res) => {
 
         res.status(200).json(performerData);
     } catch (error) {
-        console.error("Error fetching performer:", error);
         res.status(500).json({ message: "Internal server error." });
     }
 };

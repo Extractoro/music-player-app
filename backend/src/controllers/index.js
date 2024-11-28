@@ -12,6 +12,12 @@ import {getPerformerByIdController} from "./performer/getPerformerById.js";
 import {updatePerformerController} from "./performer/updatePerformer.js";
 import {deletePerformerController} from "./performer/deletePerformer.js";
 
+// Albums
+import {addAlbumController} from "./albums/addAlbum.js";
+import {getAllAlbumsController} from "./albums/getAllAlbums.js";
+import {getAlbumByIdController} from "./albums/getAlbumById.js";
+import {updateAlbumController} from "./albums/updateAlbum.js";
+import {deleteAlbumController} from "./albums/deleteAlbum.js";
 
 export default {
     signupController,
@@ -25,4 +31,10 @@ export default {
     getPerformerByIdController,
     updatePerformerController,
     deletePerformerController,
+
+    addAlbumController,
+    getAllAlbumsController,
+    getAlbumByIdController,
+    updateAlbumController,
+    deleteAlbumController,
 }

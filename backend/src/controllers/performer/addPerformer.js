@@ -41,7 +41,11 @@ export const addPerformerController = async (req, res) => {
         const connection = await getConnection();
 
         const [existingPerformer] = await connection.query(
-            "SELECT * FROM artists WHERE name = ? UNION SELECT * FROM music_groups WHERE name = ?",
+            `SELECT p.performer_id
+             FROM performer p
+             LEFT JOIN artists a ON p.performer_id = a.performer_id
+             LEFT JOIN music_groups mg ON p.performer_id = mg.performer_id
+             WHERE a.name = ? OR mg.name = ?`,
             [name, name]
         );
 

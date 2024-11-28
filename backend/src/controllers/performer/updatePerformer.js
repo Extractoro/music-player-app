@@ -61,7 +61,6 @@ export const updatePerformerController = async (req, res) => {
         connection.release();
         res.status(200).json({ message: "Performer updated successfully!" });
     } catch (error) {
-        console.error("Error updating performer:", error);
         res.status(500).json({ message: "Internal server error." });
     }
 };

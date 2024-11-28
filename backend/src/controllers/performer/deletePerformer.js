@@ -57,7 +57,6 @@ export const deletePerformerController = async (req, res) => {
         connection.release();
         res.status(200).json({ message: "Performer deleted successfully!" });
     } catch (error) {
-        console.error("Error deleting performer:", error);
         res.status(500).json({ message: "Internal server error." });
     }
 };
