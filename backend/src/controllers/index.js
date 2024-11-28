@@ -8,6 +8,9 @@ import {resetPasswordController} from './auth/resetPassword.js';
 // Performer
 import {addPerformerController} from "./performer/addPerformer.js";
 import {getPerformersController} from "./performer/getAllPerformers.js";
+import {getPerformerByIdController} from "./performer/getPerformerById.js";
+import {updatePerformerController} from "./performer/updatePerformer.js";
+import {deletePerformerController} from "./performer/deletePerformer.js";
 
 
 export default {
@@ -18,5 +21,8 @@ export default {
     resetPasswordController,
 
     addPerformerController,
-    getPerformersController
+    getPerformersController,
+    getPerformerByIdController,
+    updatePerformerController,
+    deletePerformerController,
 }

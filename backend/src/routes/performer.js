@@ -8,4 +8,10 @@ router.post("/add-performer", upload.single("photo"), controllers.addPerformerCo
 
 router.get("/all-performers", controllers.getPerformersController);
 
+router.get("/get-performer/:id", controllers.getPerformerByIdController);
+
+router.put("/update-performer/:id", controllers.updatePerformerController);
+
+router.delete("/delete-performer/:id", controllers.deletePerformerController);
+
 export default router;
