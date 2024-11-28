@@ -6,6 +6,7 @@ import morgan from "morgan";
 import authRouter from './routes/auth.js';
 import performerRouter from './routes/performer.js';
 import albumsRouter from './routes/albums.js';
+import songsRouter from './routes/songs.js';
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use(morgan('tiny'));
 app.use('/auth', authRouter);
 app.use('/performer', performerRouter);
 app.use('/albums', albumsRouter);
+app.use('/songs', songsRouter);
 
 app.listen(process.env.PORT || 7070, () => {
     console.log(`The application is listening on port ${process.env.PORT || 7070}!`);

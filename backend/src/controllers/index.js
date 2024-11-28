@@ -19,6 +19,13 @@ import {getAlbumByIdController} from "./albums/getAlbumById.js";
 import {updateAlbumController} from "./albums/updateAlbum.js";
 import {deleteAlbumController} from "./albums/deleteAlbum.js";
 
+// Songs
+import {addSongController} from "./songs/addSong.js";
+import {getAllSongsController} from "./songs/getAllSongs.js";
+import {getSongByIdController} from "./songs/getSongById.js";
+import {updateSongController} from "./songs/updateSong.js";
+import {deleteSongController} from "./songs/deleteSong.js";
+
 export default {
     signupController,
     loginController,
@@ -37,4 +44,10 @@ export default {
     getAlbumByIdController,
     updateAlbumController,
     deleteAlbumController,
+
+    addSongController,
+    getAllSongsController,
+    getSongByIdController,
+    updateSongController,
+    deleteSongController,
 }
