@@ -26,6 +26,13 @@ import {getSongByIdController} from "./songs/getSongById.js";
 import {updateSongController} from "./songs/updateSong.js";
 import {deleteSongController} from "./songs/deleteSong.js";
 
+// Playlists
+import {createPlaylistController} from "./playlists/createPlaylist.js";
+import {getUserPlaylistsController} from "./playlists/getUserPlaylists.js";
+import {addSongToPlaylistController} from "./playlists/addSongToPlaylist.js";
+import {removeSongFromPlaylistController} from "./playlists/removeSongFromPlaylist.js";
+import {deletePlaylistController} from "./playlists/deletePlaylist.js";
+
 export default {
     signupController,
     loginController,
@@ -50,4 +57,12 @@ export default {
     getSongByIdController,
     updateSongController,
     deleteSongController,
+
+    createPlaylistController,
+    getUserPlaylistsController,
+    addSongToPlaylistController,
+    removeSongFromPlaylistController,
+    deletePlaylistController,
+
+
 }

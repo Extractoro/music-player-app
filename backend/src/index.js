@@ -7,6 +7,7 @@ import authRouter from './routes/auth.js';
 import performerRouter from './routes/performer.js';
 import albumsRouter from './routes/albums.js';
 import songsRouter from './routes/songs.js';
+import playlistsRouter from "./routes/playlists.js";
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use('/auth', authRouter);
 app.use('/performer', performerRouter);
 app.use('/albums', albumsRouter);
 app.use('/songs', songsRouter);
+app.use('/playlists', playlistsRouter);
 
 app.listen(process.env.PORT || 7070, () => {
     console.log(`The application is listening on port ${process.env.PORT || 7070}!`);
