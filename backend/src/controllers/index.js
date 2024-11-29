@@ -33,6 +33,10 @@ import {addSongToPlaylistController} from "./playlists/addSongToPlaylist.js";
 import {removeSongFromPlaylistController} from "./playlists/removeSongFromPlaylist.js";
 import {deletePlaylistController} from "./playlists/deletePlaylist.js";
 
+// Groups
+import {addArtistToGroupController} from "./groups/addArtistToGroup.js";
+import {removeArtistFromGroupController} from "./groups/removeArtistFromGroup.js";
+
 export default {
     signupController,
     loginController,
@@ -64,5 +68,6 @@ export default {
     removeSongFromPlaylistController,
     deletePlaylistController,
 
-
+    addArtistToGroupController,
+    removeArtistFromGroupController
 }
