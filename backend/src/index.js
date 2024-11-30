@@ -13,7 +13,7 @@ import groupsRouter from "./routes/groups.js";
 dotenv.config();
 
 const app = express();
-const allowedUrls = ['', 'http://localhost:1234'];
+const allowedUrls = ['http://localhost:5173'];
 
 app.use(cors({
     origin: function (origin, callback) {

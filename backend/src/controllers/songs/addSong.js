@@ -1,4 +1,5 @@
 import { getConnection } from "../../connection.js";
+import cloudinary from "../../utils/cloudinary.js";
 
 export const addSongController = async (req, res) => {
     const { title, description, release_date, duration, album_id, performer_id } = req.body;
@@ -36,6 +37,33 @@ export const addSongController = async (req, res) => {
     try {
         const connection = await getConnection();
 
+        if (!req.file) {
+            return res.status(400).json({ message: "Song cover photo is required." });
+        }
+
+        const result = await new Promise((resolve, reject) => {
+            const uploadStream = cloudinary.uploader.upload_stream(
+                {
+                    folder: "songs",
+                    resource_type: "image",
+                    transformation: [{ quality: "auto", fetch_format: "auto" }],
+                },
+                (error, result) => {
+                    if (error) reject("Error uploading to Cloudinary");
+                    resolve(result);
+                }
+            );
+            uploadStream.end(req.file.buffer);
+        });
+
+        const photoPath = result.secure_url;
+
+        const [photoInsert] = await connection.query(
+            "INSERT INTO photo (path) VALUES (?)",
+            [photoPath]
+        );
+        const photoId = photoInsert.insertId;
+
         const [performer] = await connection.query(
             "SELECT * FROM performer WHERE performer_id = ?",
             [performer_id]
@@ -56,17 +84,16 @@ export const addSongController = async (req, res) => {
             }
         }
 
-        const [result] = await connection.query(
-            `INSERT INTO songs (title, description, release_date, duration, album_id, performer_id) 
-             VALUES (?, ?, ?, ?, ?, ?)`,
-            [title, description, release_date, Number(duration), album_id || null, performer_id]
+        await connection.query(
+            `INSERT INTO songs (title, description, release_date, duration, album_id, performer_id, photo_id) 
+             VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            [title, description, release_date, Number(duration), album_id || null, performer_id, photoId]
         );
 
         connection.release();
 
         res.status(201).json({
             message: "Song created successfully!",
-            song_id: result.insertId,
         });
     } catch (error) {
         console.error("Error adding song:", error);

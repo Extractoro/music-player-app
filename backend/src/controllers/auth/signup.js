@@ -32,8 +32,8 @@ export const signupController = async (req, res) => {
             [username, email, hashedPassword, verificationToken, resetPasswordToken]
         );
 
-        // const confirmationUrl = `${process.env.CLIENT_URL}/auth/verify-email?token=${verificationToken}`;
-        const confirmationUrl = `http://localhost:3000/auth/verify-email?token=${verificationToken}`;
+        const confirmationUrl = `${process.env.CLIENT_URL}/auth/verify-email?token=${verificationToken}`;
+        // const confirmationUrl = `http://localhost:3000/auth/verify-email?token=${verificationToken}`;
         await transporterEmail.sendMail({
             to: email,
             from: `Music project <daryna.budnyk@nure.ua>`,

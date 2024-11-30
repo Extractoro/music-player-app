@@ -28,7 +28,7 @@ export const requestPasswordResetController = async (req, res) => {
             [resetPasswordToken, user[0].user_id]
         );
 
-        const resetUrl = `http://localhost:3000/auth/reset-password?token=${resetPasswordToken}`;
+        const resetUrl = `${process.env.CLIENT_URL}/auth/reset-password?token=${resetPasswordToken}`;
         await transporterEmail.sendMail({
             to: email,
             from: `Music project <daryna.budnyk@nure.ua>`,

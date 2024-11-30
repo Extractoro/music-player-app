@@ -14,6 +14,7 @@ export const getAllSongsController = async (req, res) => {
                 s.album_id,
                 a.title AS album_title,
                 s.performer_id,
+                ph.path,
                 p.type AS performer_type,
                 CASE 
                     WHEN p.type = 'artist' THEN ar.name
@@ -22,6 +23,7 @@ export const getAllSongsController = async (req, res) => {
                 END AS performer_name
             FROM songs s
             LEFT JOIN albums a ON s.album_id = a.album_id
+            LEFT JOIN photo ph ON s.photo_id = ph.photo_id
             JOIN performer p ON s.performer_id = p.performer_id
             LEFT JOIN artists ar ON p.performer_id = ar.performer_id
             LEFT JOIN music_groups mg ON p.performer_id = mg.performer_id
