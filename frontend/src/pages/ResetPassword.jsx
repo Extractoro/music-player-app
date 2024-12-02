@@ -46,7 +46,7 @@ const ResetPassword = () => {
                                 className="resetPassword-form--label"
                                 htmlFor="resetPassword-password"
                             >
-                                Email:
+                                New password:
                             </label>
                             <input
                                 className="resetPassword-form--input"
@@ -55,6 +55,7 @@ const ResetPassword = () => {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
+                                minLength={6}
                                 required
                             />
                         </div>

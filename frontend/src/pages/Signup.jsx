@@ -76,6 +76,7 @@ const Signup = () => {
                                 type="password"
                                 id="password"
                                 name="password"
+                                minLength={6}
                                 value={formData.password}
                                 onChange={handleChange}
                                 required

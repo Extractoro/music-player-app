@@ -319,7 +319,7 @@
     background-image: url("../../assets/card1.png");
     background-size: cover;
     background-position: center;
-    filter: blur(72px);
+    filter: blur(48px);
     opacity: 0.4;
     z-index: -1;
     border-radius: 0 0 8px 8px;

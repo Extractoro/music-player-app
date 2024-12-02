@@ -84,11 +84,11 @@ const Home = () => {
             <aside className={`aside ${isAsideOpen ? "open" : ""}`}>
                 <div className="aside-container">
                     <div className="aside-profile">
-                        <a className="aside-button">
+                        <Link to={`/profile`} className="aside-button">
                             <svg className="aside-profile--icon">
                                 <use href={`${sprite}#profile`}></use>
                             </svg>
-                        </a>
+                        </Link>
                         <button className="aside-button" onClick={handleToggleMenu} ref={buttonRef}>
                             <svg className="aside-profile--icon">
                                 <use href={`${sprite}#dots`}></use>
@@ -175,7 +175,7 @@ const Home = () => {
                                                 src={path}
                                                 alt="Track cover"
                                             />
-                                            <div className="tracks-card--content">
+                                            <div className="tracks-card--content" >
                                                 <h2 className="tracks-card--title">{title}</h2>
                                                 <p className="tracks-card--performer">
                                                     {performer_name}
