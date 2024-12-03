@@ -10,12 +10,22 @@ import Home from "./pages/Home.jsx";
 import VerifyEmail from "./pages/VerifyEmail.jsx";
 import ForgetPassword from "./pages/ForgetPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
+import Profile from "./pages/Profile.jsx";
+import Songs from "./pages/Songs.jsx";
+import Albums from "./pages/Albums.jsx";
+import Tracks from "./pages/Tracks.jsx";
+import Artists from "./pages/Artists.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/">
           <Route element={<PrivateRoute />}>
             <Route index element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/songs" element={<Songs />} />
+            <Route path="/albums" element={<Albums />} />
+            <Route path="/tracks" element={<Tracks />} />
+            <Route path="/artists" element={<Artists />} />
               {/*<Route path='song/:song_id' element={}/>*/}
 
             {/*<Route path="/admin/">*/}

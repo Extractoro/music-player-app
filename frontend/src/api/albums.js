@@ -2,45 +2,45 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000";
 
-export const getAllSongs = async () => {
+export const getAllAlbums = async () => {
     try {
-        const response = await axios.get(`${API_URL}/songs/all-songs`);
+        const response = await axios.get(`${API_URL}/albums/all-albums`);
         return response.data;
     } catch (error) {
         throw error.response?.data || error.message;
     }
 };
 
-export const getSongById = async (id) => {
+export const getAlbumById = async (id) => {
     try {
-        const response = await axios.get(`${API_URL}/songs/get-song/${id}`);
+        const response = await axios.get(`${API_URL}/albums/get-album/${id}`);
         return response.data;
     } catch (error) {
         throw error.response?.data || error.message;
     }
 };
 
-export const addSong = async (formData) => {
+export const addAlbum = async (formData) => {
     try {
-        const response = await axios.post(`${API_URL}/songs/add-song`, formData);
+        const response = await axios.post(`${API_URL}/albums/add-album`, formData);
         return response.data;
     } catch (error) {
         throw error.response?.data || error.message;
     }
 };
 
-export const updateSong = async (id, formData) => {
+export const updateAlbum = async (id, formData) => {
     try {
-        const response = await axios.put(`${API_URL}/songs/update-song/${id}`, formData);
+        const response = await axios.put(`${API_URL}/albums/update-album/${id}`, formData);
         return response.data;
     } catch (error) {
         throw error.response?.data || error.message;
     }
 };
 
-export const deleteSong = async (id) => {
+export const deleteAlbum = async (id) => {
     try {
-        const response = await axios.delete(`${API_URL}/songs/delete-song/${id}`);
+        const response = await axios.delete(`${API_URL}/albums/delete-album/${id}`);
         return response.data;
     } catch (error) {
         throw error.response?.data || error.message;

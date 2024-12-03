@@ -69,10 +69,6 @@
     line-height: 150%;
 }
 
-.aside-navigation--link:first-child {
-    color: #a766ff;
-}
-
 .aside-collection--title, .aside-playlists--title {
     font-weight: 500;
     font-size: 12px;
@@ -125,6 +121,15 @@
     background: transparent;
 }
 
+.aside-navigation--link.active, .aside-collection--link.active {
+    color: #a766ff;
+}
+
+.aside-navigation--link.active svg,
+.aside-collection--link.active svg {
+    fill: #a766ff;
+    stroke: #a766ff;
+}
 
 /* Main */
 /* Header */
@@ -228,6 +233,7 @@
 /* Tracks */
 .main-home {
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .main-tracks--title {
@@ -276,14 +282,6 @@
     gap: 16px;
 }
 
-.main-tracks--card {
-    display: block;
-    flex: 0 0 auto;
-    width: 272px;
-    scroll-snap-align: start;
-    transition: box-shadow 0.3s;
-}
-
 .main-tracks--card:hover {
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
 }
@@ -294,12 +292,18 @@
     max-width: 272px;
     border-radius: 8px;
     overflow: hidden;
+    display: block;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    transition: box-shadow 0.3s;
 }
 
 .tracks-card--img {
     width: 100%;
+    height: 250px;
     display: block;
     border-radius: 8px 8px 0 0;
+    object-fit: cover;
 }
 
 .tracks-card--content {

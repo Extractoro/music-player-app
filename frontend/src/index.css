@@ -56,3 +56,26 @@ input {
     height: 100vh;
     width: 100vw;
 }
+::-webkit-scrollbar {
+    width: 6px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #212124;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #A766FF;
+    border-radius: 4px;
+    transition: background 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #D1AFFF;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}

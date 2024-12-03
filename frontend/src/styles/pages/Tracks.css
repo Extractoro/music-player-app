@@ -1,0 +1,31 @@
+.main-page-tracks--container-wrapper {
+    overflow-x: hidden;
+    width: 100%;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    user-select: none;
+    scroll-behavior: auto;
+}
+
+.main-page-tracks--container {
+    display: grid;
+    gap: 1.5rem;
+}
+
+@media screen and (min-width: 600px) {
+    .main-page-tracks--container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .main-page-tracks--container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .main-page-tracks--container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

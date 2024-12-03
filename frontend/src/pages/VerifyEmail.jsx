@@ -18,8 +18,6 @@ const VerifyEmail = () => {
                     navigate("/signin");
                 })
                 .catch((error) => {
-                    console.log(error)
-
                     toast.error(error.message || "Invalid or expired token.", {
                         theme: "dark",
                     });
