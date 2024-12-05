@@ -1,25 +1,22 @@
 import React, {useEffect, useState} from 'react'
+import {getAllPerformers} from "../api/performer.js";
 import {toast} from "react-toastify";
-import ReactPaginate from "react-paginate";
-import {getAllSongs} from "../api/songs.js"
-import "../styles/pages/Home.css";
-import "../styles/pages/Tracks.css";
-import "../styles/components/Pagination.css";
 import Aside from "../components/Aside.jsx";
 import Header from "../components/Header.jsx";
+import ReactPaginate from "react-paginate";
 import {Link} from "react-router-dom";
 import {isAdmin} from "../utils/isAdmin.js";
+import '../styles/pages/Performers.css'
 
-
-const Tracks = () => {
+const Performers = () => {
     const [itemOffset, setItemOffset] = useState(0);
-    const [songs, setSongs] = useState([]);
+    const [performers, setPerformers] = useState([]);
 
     const loadData = async () => {
         try {
-            const songsData = await getAllSongs();
+            const performersData = await getAllPerformers();
 
-            setSongs(songsData);
+            setPerformers(performersData);
         } catch (error) {
             toast.error(error.message || "An error occurred during getting data.", {
                 theme: "dark"
@@ -58,11 +55,11 @@ const Tracks = () => {
 
     const itemsPerPage = 8;
     const endOffset = itemOffset + itemsPerPage;
-    const currentItems = songs?.data?.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(songs?.data?.length / itemsPerPage);
+    const currentItems = performers?.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(performers?.length / itemsPerPage);
 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % songs?.data?.length;
+        const newOffset = (event.selected * itemsPerPage) % performers?.length;
         setItemOffset(newOffset);
     };
 
@@ -78,31 +75,32 @@ const Tracks = () => {
 
                         <div className="main-home">
                             <div className="main-tracks">
-                                <div className='track-container'>
-                                    <h2 className="main-tracks--title">Tracks</h2>
+                                <div className='performer-container'>
+                                    <h2 className="main-tracks--title">Performers</h2>
                                     {isAdmin() === 'admin' &&
-                                        <Link to={'/track/create-track'} className='create-track'>Create
-                                            track</Link>
+                                        <Link to={'/performer/create-performer'} className='create-performer'>Create
+                                            performer</Link>
                                     }
                                 </div>
                                 <div className="main-page-tracks--container-wrapper">
                                     <div className="main-page-tracks--container">
                                         {currentItems?.map(({
-                                                                song_id,
-                                                                title,
-                                                                path,
-                                                                performer_name,
+                                                                performer_id,
+                                                                photo_path,
+                                                                artistDetails,
+                                                                groupDetails,
+                                                                type
                                                             }) => (
-                                            <Link to={`/song/${song_id}`} className="main-tracks--card" key={song_id}>
+                                            <Link to={`/performer/${performer_id}`} className="main-tracks--card" key={performer_id}>
                                                 <img
                                                     className="tracks-card--img"
-                                                    src={path}
+                                                    src={photo_path}
                                                     alt="Track cover"
                                                 />
                                                 <div className="tracks-card--content">
-                                                    <h2 className="tracks-card--title">{title}</h2>
+                                                    <h2 className="tracks-card--title">{type === "artist" ? artistDetails?.name : groupDetails?.name || "Unknown Name"}</h2>
                                                     <p className="tracks-card--performer">
-                                                        {performer_name}
+                                                        {`${type[0].toUpperCase()}${type.slice(1)}`}
                                                     </p>
                                                 </div>
                                             </Link>
@@ -112,7 +110,7 @@ const Tracks = () => {
                             </div>
                         </div>
                         {
-                            songs?.data?.length > itemsPerPage && (<ReactPaginate
+                            performers?.data?.length > itemsPerPage && (<ReactPaginate
                                 breakLabel="..."
                                 nextLabel="Next >"
                                 onPageChange={handlePageClick}
@@ -134,4 +132,4 @@ const Tracks = () => {
         </>
     )
 }
-export default Tracks
+export default Performers

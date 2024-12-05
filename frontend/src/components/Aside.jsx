@@ -40,7 +40,7 @@ const Aside = ({isAsideOpen, setIsMenuOpen, handleToggleMenu, isMenuOpen}) => {
             <aside className={`aside ${isAsideOpen ? "open" : ""}`}>
                 <div className="aside-container">
                     <div className="aside-profile">
-                        <Link to={`/profile`} className="aside-button">
+                        <Link to={`/profile`} className={`aside-button ${isActive('/profile') ? 'active' : ''}`}>
                             <svg className="aside-profile--icon">
                                 <use href={`${sprite}#profile`}></use>
                             </svg>
@@ -75,11 +75,11 @@ const Aside = ({isAsideOpen, setIsMenuOpen, handleToggleMenu, isMenuOpen}) => {
                                 </svg>
                                 Tracks
                             </Link>
-                            <Link to={`/artists`} className={`aside-collection--link ${isActive('/artists') ? 'active' : ''}`}>
+                            <Link to={`/performers`} className={`aside-collection--link ${isActive('/performers') ? 'active' : ''}`}>
                                 <svg className="aside-collection--icon">
                                     <use href={`${sprite}#artists`}></use>
                                 </svg>
-                                Artists
+                                Performers
                             </Link>
                         </div>
                     </div>

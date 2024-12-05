@@ -2,6 +2,8 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000";
 
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+
 export const getAllSongs = async () => {
     try {
         const response = await axios.get(`${API_URL}/songs/all-songs`);

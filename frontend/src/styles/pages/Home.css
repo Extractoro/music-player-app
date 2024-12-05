@@ -43,6 +43,11 @@
     background-color: transparent;
 }
 
+.aside-button.active svg,
+.aside-button.active svg {
+    fill: #a766ff;
+}
+
 .aside-profile--icon {
     width: 30px;
     height: 30px;

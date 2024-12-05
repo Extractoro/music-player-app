@@ -11,26 +11,37 @@ import VerifyEmail from "./pages/VerifyEmail.jsx";
 import ForgetPassword from "./pages/ForgetPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
 import Profile from "./pages/Profile.jsx";
-import Songs from "./pages/Songs.jsx";
 import Albums from "./pages/Albums.jsx";
 import Tracks from "./pages/Tracks.jsx";
-import Artists from "./pages/Artists.jsx";
+import Performers from "./pages/Performers.jsx";
+import ProfileEdit from "./pages/ProfileEdit.jsx";
+import Playlists from "./pages/Playlists.jsx";
+import PlaylistsCreate from "./pages/PlaylistsCreate.jsx";
+import AlbumsCreate from "./pages/AlbumsCreate.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/">
-          <Route element={<PrivateRoute />}>
-            <Route index element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/songs" element={<Songs />} />
-            <Route path="/albums" element={<Albums />} />
-            <Route path="/tracks" element={<Tracks />} />
-            <Route path="/artists" element={<Artists />} />
-              {/*<Route path='song/:song_id' element={}/>*/}
+            <Route element={<PrivateRoute />}>
+                <Route index element={<Home />} />
+                <Route path="/profile" element={<Profile />} />
+                {/*<Route path="/profile/edit-profile" element={<ProfileEdit />} />*/}
 
-            {/*<Route path="/admin/">*/}
+                <Route path="/playlists" element={<Playlists />} />
+                <Route path="/playlist/create-playlist" element={<PlaylistsCreate />} />
+
+                <Route path="/albums" element={<Albums />} />
+                <Route path="/album/create-album" element={<AlbumsCreate />} />
+
+                <Route path="/tracks" element={<Tracks />} />
+                {/*<Route path="/track/create-track" element={<TracksCreate />} />*/}
+                {/*<Route path='/song/:song_id' element={}/>*/}
+
+                <Route path="/performers" element={<Performers />} />
+                {/*<Route path="/performer/create-performer" element={<PerformersCreate />} />*/}
+
+                {/*<Route path="/admin/">*/}
             </Route>
-          {/*</Route>*/}
 
           <Route element={<PublicRoute restricted />}>
               <Route path='signup' element={<Signup />} />

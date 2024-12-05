@@ -2,6 +2,8 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000";
 
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+
 export const getUserPlaylists = async (id) => {
     try {
         const response = await axios.get(`${API_URL}/playlists/user-playlists/${id}`);

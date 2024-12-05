@@ -44,8 +44,7 @@ export const loginController = async (req, res) => {
             message: "Login successful",
             token,
             user: {
-                user_id: foundUser.user_id,
-                role: foundUser.role
+                user_id: foundUser.user_id
             }
         });
     } catch (err) {

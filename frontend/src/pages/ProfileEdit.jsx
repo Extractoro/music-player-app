@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import "../styles/pages/Signin.css";
+import "../styles/pages/ProfileEdit.css";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container.jsx";
 import { signinUser } from "../api/auth";
 import Cookies from "js-cookie";
 
-const Signin = () => {
+const ProfileEdit = () => {
     const [formData, setFormData] = useState({
+        username: "",
         email: "",
-        password: "",
     });
 
     const navigate = useNavigate();
@@ -23,16 +23,12 @@ const Signin = () => {
         e.preventDefault();
 
         try {
-            const response = await signinUser(formData);
+            const response = await (formData);
             toast.success(response.message || "You have successfully signed in!", {
                 theme: "dark"
             });
 
-            localStorage.setItem("user_id", response.user.user_id);
-            localStorage.setItem("token", `Bearer ${response.token}`);
-            Cookies.set("token", response.token, { expires: 1, secure: true, sameSite: 'Strict' });
-
-            navigate("/");
+            navigate("/profile");
         } catch (error) {
             toast.error(error.message || "An error occurred during signin.", {
                 theme: "dark"
@@ -108,4 +104,4 @@ const Signin = () => {
     );
 };
 
-export default Signin;
+export default ProfileEdit;

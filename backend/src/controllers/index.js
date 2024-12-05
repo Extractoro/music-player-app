@@ -4,6 +4,7 @@ import {loginController} from './auth/login.js';
 import {verifyEmailController} from './auth/verifyEmail.js';
 import {requestPasswordResetController} from './auth/requestPasswordReset.js';
 import {resetPasswordController} from './auth/resetPassword.js';
+import {getCurrentUserController} from "./auth/getCurrentUser.js";
 
 // Performer
 import {addPerformerController} from "./performer/addPerformer.js";
@@ -43,6 +44,7 @@ export default {
     verifyEmailController,
     requestPasswordResetController,
     resetPasswordController,
+    getCurrentUserController,
 
     addPerformerController,
     getPerformersController,

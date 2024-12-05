@@ -44,21 +44,27 @@ export const passwordReset = async (password, token) => {
     }
 };
 
-
 export const logoutUser = async () => {
     try {
         const response = await axios.get(`${API_URL}/auth/logout`, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`
-            }
+            headers: {Authorization: `${localStorage.getItem("token")}`}
         })
 
         localStorage.removeItem('token');
         localStorage.removeItem('user_id');
-        localStorage.removeItem('role');
-
         Cookies.remove('token');
 
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
+};
+
+export const currentUser = async (id) => {
+    try {
+        const response = await axios.get(`${API_URL}/auth/current/${id}`, {
+            headers: {Authorization: `${localStorage.getItem("token")}`}
+        });
         return response.data;
     } catch (error) {
         throw error.response?.data || error.message;

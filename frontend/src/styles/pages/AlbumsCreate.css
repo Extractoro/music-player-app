@@ -1,0 +1,142 @@
+.albumCreate {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    gap: 2rem;
+    flex: 3;
+    height: 100%;
+    width: 100%;
+}
+
+.albumCreate-container {
+    max-width: 720px;
+    width: 100%;
+}
+
+.albumCreate-title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 125%;
+    margin-bottom: 2.5rem;
+}
+
+.albumCreate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.albumCreate-form--container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.albumCreate-form--label {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 120%;
+    text-transform: uppercase;
+}
+
+.albumCreate-form--input, .albumCreate-form--select {
+    background-color: #fcfcfc;
+    padding: .75rem;
+    border-radius: 0.5rem;
+}
+
+.albumCreate-form--textarea {
+    background-color: #fcfcfc;
+    padding: .75rem;
+    border-radius: 0.5rem;
+    resize: none;
+}
+
+.albumCreate-form--input:focus, .albumCreate-form--select:focus {
+    outline: 2px solid #A766FF;
+}
+
+.albumCreate-form--button {
+    background-color: #D1AFFF;
+    padding: .75rem;
+    border-radius: 0.5rem;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #171719;
+
+    transition: .3s ease-in-out;
+}
+
+.albumCreate-form--button:hover {
+    background-color: #A766FF;
+    color: #FCFCFC;
+}
+
+.albumCreate-form--link {
+    color: #D1AFFF;
+
+    transition: .3s ease-in-out;
+}
+
+.albumCreate-form--link:hover {
+    color: #A766FF;
+}
+
+.albumCreate-back--icon {
+    width: 30px;
+    height: 30px;
+    stroke: #fcfcfc;
+
+    transition: .3s ease-in-out;
+}
+
+.albumCreate-link--back {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fcfcfc;
+}
+.albumCreate-wrapper {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.albumCreate-form--file-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.albumCreate-form--file-label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.albumCreate-form--file-button {
+    background-color: #D1AFFF;
+    padding: .5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 120%;
+    color: #171719;
+    cursor: pointer;
+
+    transition: .3s ease-in-out;
+}
+
+.albumCreate-form--file-button:hover {
+    background-color: #A766FF;
+    color: #FCFCFC;
+}

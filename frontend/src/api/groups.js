@@ -2,6 +2,8 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000";
 
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+
 export const addArtistToGroup = async (groupId, formData) => {
     try {
         const response = await axios.post(`${API_URL}/groups/${groupId}/add-artists`, formData);

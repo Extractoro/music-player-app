@@ -1,0 +1,108 @@
+.playlistCreate {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    gap: 2rem;
+    flex: 3;
+    height: 100%;
+    width: 100%;
+}
+
+.playlistCreate-container {
+    max-width: 720px;
+    width: 100%;
+}
+
+.playlistCreate-title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 125%;
+    margin-bottom: 2.5rem;
+}
+
+.playlistCreate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.playlistCreate-form--container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.playlistCreate-form--label {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 120%;
+    text-transform: uppercase;
+}
+
+.playlistCreate-form--input {
+    background-color: #fcfcfc;
+    padding: .75rem;
+    border-radius: 0.5rem;
+}
+
+.playlistCreate-form--textarea {
+    background-color: #fcfcfc;
+    padding: .75rem;
+    border-radius: 0.5rem;
+    resize: none;
+}
+
+.playlistCreate-form--input:focus {
+    outline: 2px solid #A766FF;
+}
+
+.playlistCreate-form--button {
+    background-color: #D1AFFF;
+    padding: .75rem;
+    border-radius: 0.5rem;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #171719;
+
+    transition: .3s ease-in-out;
+}
+
+.playlistCreate-form--button:hover {
+    background-color: #A766FF;
+    color: #FCFCFC;
+}
+
+.playlistCreate-form--link {
+    color: #D1AFFF;
+
+    transition: .3s ease-in-out;
+}
+
+.playlistCreate-form--link:hover {
+    color: #A766FF;
+}
+
+.playlistCreate-back--icon {
+    width: 30px;
+    height: 30px;
+    stroke: #fcfcfc;
+
+    transition: .3s ease-in-out;
+}
+
+.playlistCreate-link--back {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fcfcfc;
+}
+.playlistCreate-wrapper {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}

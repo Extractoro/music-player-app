@@ -19,4 +19,6 @@ router.get("/logout", (req, res) => {
     res.status(200).json({ message: "Logout successful" });
 });
 
+router.get('/current/:id', controllers.getCurrentUserController)
+
 export default router;

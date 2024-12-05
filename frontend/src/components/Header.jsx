@@ -2,6 +2,8 @@ import React from 'react'
 import sprite from "../assets/symbol-defs.svg";
 
 const Header = ({handleToggleAside}) => {
+    const isProfile = (path) => location.pathname === path;
+
     return (
         <header className="main-header">
             <button id="aside-toggle" className="aside-toggle" onClick={handleToggleAside}>
@@ -9,7 +11,7 @@ const Header = ({handleToggleAside}) => {
                     <use href={`${sprite}#menu`}></use>
                 </svg>
             </button>
-            <form method="post" className="header-form">
+            <form method="post" className={`${isProfile('/profile') ? 'displayNone' : 'header-form'}`}>
                 <label className="header-form--container">
                     <input
                         className="header-form--input"

@@ -1,0 +1,9 @@
+.profileEdit {
+    height: 100%;
+}
+
+.profileEdit-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

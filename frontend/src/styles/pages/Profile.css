@@ -1,0 +1,52 @@
+.profile {
+    background-color: #414149;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-radius: 0.5rem;
+}
+
+@media screen and (min-width: 600px) {
+    .profile {
+        flex-direction: row;
+    }
+}
+
+.profile-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.profile-text {
+
+}
+
+.profile-text--span {
+
+}
+
+.profile-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D1AFFF;
+    padding: .75rem;
+    border-radius: 0.5rem;
+    flex: 1;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #171719;
+
+    transition: .3s ease-in-out;
+}
+
+.profile-link:hover {
+    background-color: #A766FF;
+    color: #FCFCFC;
+}

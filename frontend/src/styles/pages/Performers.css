@@ -1,0 +1,38 @@
+.create-performer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D1AFFF;
+    border-radius: 0.5rem;
+    padding: .75rem 3rem;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #171719;
+
+    transition: .3s ease-in-out;
+}
+
+.create-performer:hover {
+    background-color: #A766FF;
+    color: #FCFCFC;
+}
+
+.performer-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media screen and (min-width: 500px) {
+    .performer-container {
+        flex-direction: row;
+    }
+}
+
+.main-tracks--title {
+    flex: 1;
+}
