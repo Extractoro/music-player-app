@@ -1,62 +1,61 @@
-.albumCreate {
+.trackCreate {
     flex-direction: column;
     align-items: center;
     display: flex;
     gap: 2rem;
-    flex: 5;
     height: 100%;
     width: 100%;
 }
 
-.albumCreate-container {
+.trackCreate-container {
     max-width: 720px;
     width: 100%;
 }
 
-.albumCreate-title {
+.trackCreate-title {
     font-weight: 600;
     font-size: 24px;
     line-height: 125%;
     margin-bottom: 2.5rem;
 }
 
-.albumCreate-form {
+.trackCreate-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-.albumCreate-form--container {
+.trackCreate-form--container {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.albumCreate-form--label {
+.trackCreate-form--label {
     font-weight: 600;
     font-size: 12px;
     line-height: 120%;
     text-transform: uppercase;
 }
 
-.albumCreate-form--input, .albumCreate-form--select {
+.trackCreate-form--input, .trackCreate-form--select {
     background-color: #fcfcfc;
     padding: .75rem;
     border-radius: 0.5rem;
 }
 
-.albumCreate-form--textarea {
+.trackCreate-form--textarea {
     background-color: #fcfcfc;
     padding: .75rem;
     border-radius: 0.5rem;
     resize: none;
 }
 
-.albumCreate-form--input:focus, .albumCreate-form--select:focus {
+.trackCreate-form--input:focus, .trackCreate-form--select:focus {
     outline: 2px solid #A766FF;
 }
 
-.albumCreate-form--button {
+.trackCreate-form--button {
     background-color: #D1AFFF;
     padding: .75rem;
     border-radius: 0.5rem;
@@ -70,22 +69,22 @@
     transition: .3s ease-in-out;
 }
 
-.albumCreate-form--button:hover {
+.trackCreate-form--button:hover {
     background-color: #A766FF;
     color: #FCFCFC;
 }
 
-.albumCreate-form--link {
+.trackCreate-form--link {
     color: #D1AFFF;
 
     transition: .3s ease-in-out;
 }
 
-.albumCreate-form--link:hover {
+.trackCreate-form--link:hover {
     color: #A766FF;
 }
 
-.albumCreate-back--icon {
+.trackCreate-back--icon {
     width: 30px;
     height: 30px;
     stroke: #fcfcfc;
@@ -93,22 +92,19 @@
     transition: .3s ease-in-out;
 }
 
-.albumCreate-link--back {
-    flex: 1;
+.trackCreate-link--back {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     color: #fcfcfc;
 }
-.albumCreate-wrapper {
-    display: flex;
+.trackCreate-wrapper {
     gap: 3rem;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
     padding: 3rem 0;
 }
-
-.albumCreate-form--file-container {
+.trackCreate-form--file-container {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -116,12 +112,12 @@
 }
 
 @media screen and (min-width: 600px) {
-    .albumCreate-form--file-container {
+    .trackCreate-form--file-container {
         flex-direction: row;
     }
 }
 
-.albumCreate-form--file-label {
+.trackCreate-form--file-label {
     font-size: 14px;
     color: #333;
     font-weight: 500;
@@ -131,7 +127,7 @@
     text-overflow: ellipsis;
 }
 
-.albumCreate-form--file-button {
+.trackCreate-form--file-button {
     background-color: #D1AFFF;
     padding: .5rem 1rem;
     border-radius: 0.5rem;
@@ -144,7 +140,7 @@
     transition: .3s ease-in-out;
 }
 
-.albumCreate-form--file-button:hover {
+.trackCreate-form--file-button:hover {
     background-color: #A766FF;
     color: #FCFCFC;
 }

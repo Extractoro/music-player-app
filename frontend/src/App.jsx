@@ -18,6 +18,8 @@ import ProfileEdit from "./pages/ProfileEdit.jsx";
 import Playlists from "./pages/Playlists.jsx";
 import PlaylistsCreate from "./pages/PlaylistsCreate.jsx";
 import AlbumsCreate from "./pages/AlbumsCreate.jsx";
+import TracksCreate from "./pages/TracksCreate.jsx";
+import PerformersCreate from "./pages/PerformersCreate.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -34,11 +36,11 @@ const router = createBrowserRouter(
                 <Route path="/album/create-album" element={<AlbumsCreate />} />
 
                 <Route path="/tracks" element={<Tracks />} />
-                {/*<Route path="/track/create-track" element={<TracksCreate />} />*/}
+                <Route path="/track/create-track" element={<TracksCreate />} />
                 {/*<Route path='/song/:song_id' element={}/>*/}
 
                 <Route path="/performers" element={<Performers />} />
-                {/*<Route path="/performer/create-performer" element={<PerformersCreate />} />*/}
+                <Route path="/performer/create-performer" element={<PerformersCreate />} />
 
                 {/*<Route path="/admin/">*/}
             </Route>

@@ -110,7 +110,7 @@ const Performers = () => {
                             </div>
                         </div>
                         {
-                            performers?.data?.length > itemsPerPage && (<ReactPaginate
+                            performers?.length > itemsPerPage && (<ReactPaginate
                                 breakLabel="..."
                                 nextLabel="Next >"
                                 onPageChange={handlePageClick}
@@ -133,3 +133,5 @@ const Performers = () => {
     )
 }
 export default Performers
+
+

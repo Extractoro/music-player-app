@@ -42,8 +42,6 @@ const AlbumsCreate = () => {
         return name?.toLowerCase().includes(search.toLowerCase());
     });
 
-    console.log(formData.photo)
-
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         setFormData((prevData) => ({ ...prevData, photo: file }));
@@ -94,7 +92,6 @@ const AlbumsCreate = () => {
             });
         }
     };
-
 
     return (
         <Container>
@@ -210,7 +207,7 @@ const AlbumsCreate = () => {
                                     rows='6'
                                     id="description"
                                     name="description"
-                                    value={formData.password}
+                                    value={formData.description}
                                     onChange={handleChange}
                                 />
                             </div>
