@@ -50,9 +50,6 @@ const Profile = () => {
         };
     }, []);
 
-    console.log(user)
-
-
     return (
         <div className='home'>
             <Aside isAsideOpen={isAsideOpen} handleToggleMenu={handleToggleMenu} setIsMenuOpen={setIsMenuOpen}

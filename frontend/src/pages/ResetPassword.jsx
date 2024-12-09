@@ -4,6 +4,7 @@ import "../styles/pages/ResetPassword.css";
 import {passwordReset} from "../api/auth.js";
 import Container from "../components/Container.jsx";
 import {useNavigate, useSearchParams} from "react-router-dom";
+import {throttle} from "lodash";
 
 const ResetPassword = () => {
     const navigate = useNavigate();
@@ -14,8 +15,7 @@ const ResetPassword = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const submitForm = async (e) => {
         const token = searchParams.get("token");
 
         try {
@@ -31,6 +31,13 @@ const ResetPassword = () => {
         }
     };
 
+    const throttledSubmit = throttle(submitForm, 5000, { leading: true, trailing: false });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        throttledSubmit();
+    };
+
     return (
         <Container>
             <div className="resetPassword">
@@ -39,7 +46,7 @@ const ResetPassword = () => {
                     <form
                         id="resetPasswordForm"
                         className="resetPassword-form"
-                        onSubmit={handleSubmit}
+                        onSubmit={onSubmit}
                     >
                         <div className="resetPassword-form--container">
                             <label

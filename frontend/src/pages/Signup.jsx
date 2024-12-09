@@ -4,6 +4,7 @@ import "../styles/pages/Signup.css";
 import Container from "../components/Container.jsx";
 import {Link} from "react-router-dom";
 import {signupUser} from "../api/auth.js";
+import {throttle} from "lodash";
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -17,9 +18,7 @@ const Signup = () => {
         setFormData((prevData) => ({...prevData, [name]: value}));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
+    const submitForm = async (e) => {
         try {
             const response = await signupUser(formData);
             toast.success(response.message || "You have successfully signed up!", {
@@ -33,12 +32,19 @@ const Signup = () => {
         }
     };
 
+    const throttledSubmit = throttle(submitForm, 5000, { leading: true, trailing: false });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        throttledSubmit();
+    };
+
     return (
         <Container>
             <div className='registration'>
                 <div className="registration-container">
                     <h2 className="registration-title">Sign up now!</h2>
-                    <form id="registrationForm" className="registration-form" onSubmit={handleSubmit}>
+                    <form id="registrationForm" className="registration-form" onSubmit={onSubmit}>
                         <div className="registration-form--container">
                             <label className="registration-form--label" htmlFor="username">
                                 Username:

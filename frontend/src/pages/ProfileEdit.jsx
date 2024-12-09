@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container.jsx";
 import { signinUser } from "../api/auth";
 import Cookies from "js-cookie";
+import {throttle} from "lodash";
 
 const ProfileEdit = () => {
     const [formData, setFormData] = useState({
@@ -19,22 +20,22 @@ const ProfileEdit = () => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await (formData);
-            toast.success(response.message || "You have successfully signed in!", {
-                theme: "dark"
-            });
-
-            navigate("/profile");
-        } catch (error) {
-            toast.error(error.message || "An error occurred during signin.", {
-                theme: "dark"
-            });
-        }
-    };
+    // const handleSubmit = throttle(async (e) => {
+    //     e.preventDefault();
+    //
+    //     try {
+    //         const response = await (formData);
+    //         toast.success(response.message || "You have successfully signed in!", {
+    //             theme: "dark"
+    //         });
+    //
+    //         navigate("/profile");
+    //     } catch (error) {
+    //         toast.error(error.message || "An error occurred during signin.", {
+    //             theme: "dark"
+    //         });
+    //     }
+    // }, 5000);
 
     return (
         <Container>

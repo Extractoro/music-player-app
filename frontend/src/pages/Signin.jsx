@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container.jsx";
 import { signinUser } from "../api/auth";
 import Cookies from "js-cookie";
+import {throttle} from "lodash";
 
 const Signin = () => {
     const [formData, setFormData] = useState({
@@ -19,13 +20,12 @@ const Signin = () => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
+    const submitForm = async (e) => {
         try {
             const response = await signinUser(formData);
+
             toast.success(response.message || "You have successfully signed in!", {
-                theme: "dark"
+                theme: "dark",
             });
 
             localStorage.setItem("user_id", response.user.user_id);
@@ -35,9 +35,16 @@ const Signin = () => {
             navigate("/");
         } catch (error) {
             toast.error(error.message || "An error occurred during signin.", {
-                theme: "dark"
+                theme: "dark",
             });
         }
+    };
+
+    const throttledSubmit = throttle(submitForm, 5000, { leading: true, trailing: false });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        throttledSubmit();
     };
 
     return (
@@ -48,7 +55,7 @@ const Signin = () => {
                     <form
                         id="loginForm"
                         className="login-form"
-                        onSubmit={handleSubmit}
+                        onSubmit={onSubmit}
                     >
                         <div className="login-form--container">
                             <label

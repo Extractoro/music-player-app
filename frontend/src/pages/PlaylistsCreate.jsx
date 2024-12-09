@@ -5,6 +5,7 @@ import {Link, useNavigate} from "react-router-dom";
 import Container from "../components/Container.jsx";
 import {createPlaylist} from "../api/playlists.js";
 import sprite from "../assets/symbol-defs.svg";
+import {throttle} from "lodash";
 
 const PlaylistsCreate = () => {
     const [formData, setFormData] = useState({
@@ -19,9 +20,7 @@ const PlaylistsCreate = () => {
         setFormData((prevData) => ({...prevData, [name]: value}));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
+    const submitForm = async (e) => {
         try {
             const user_id = localStorage.getItem('user_id');
 
@@ -36,6 +35,13 @@ const PlaylistsCreate = () => {
                 theme: "dark"
             });
         }
+    };
+
+    const throttledSubmit = throttle(submitForm, 5000, { leading: true, trailing: false });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        throttledSubmit();
     };
 
     return (
@@ -53,7 +59,7 @@ const PlaylistsCreate = () => {
                         <form
                             id="playlistCreateForm"
                             className="playlistCreate-form"
-                            onSubmit={handleSubmit}
+                            onSubmit={onSubmit}
                         >
                             <div className="playlistCreate-form--container">
                                 <label

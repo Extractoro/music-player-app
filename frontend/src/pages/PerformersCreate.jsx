@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container.jsx";
 import { addPerformer } from "../api/performer.js";
 import sprite from "../assets/symbol-defs.svg";
+import {throttle} from "lodash";
 
 const PerformersCreate = () => {
     const [formData, setFormData] = useState({
@@ -31,9 +32,7 @@ const PerformersCreate = () => {
         setFormData((prevData) => ({ ...prevData, photo: file }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
+    const submitForm = async (e) => {
         if (!formData.type) {
             toast.error("Choose performer type!", { theme: "dark" });
             return;
@@ -56,6 +55,13 @@ const PerformersCreate = () => {
         }
     };
 
+    const throttledSubmit = throttle(submitForm, 5000, { leading: true, trailing: false });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        throttledSubmit();
+    };
+
     return (
         <Container>
             <div className="performersCreate-wrapper">
@@ -69,7 +75,7 @@ const PerformersCreate = () => {
                 <div className="performersCreate">
                     <div className="performersCreate-container">
                         <h2 className="performersCreate-title">Create performer</h2>
-                        <form id="performersForm" className="performersCreate-form" onSubmit={handleSubmit}>
+                        <form id="performersForm" className="performersCreate-form" onSubmit={onSubmit}>
                             <div className="performersCreate-form--container">
                                 <label className="performersCreate-form--label" htmlFor="type">
                                     Performer Type: *

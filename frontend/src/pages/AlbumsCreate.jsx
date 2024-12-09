@@ -6,6 +6,7 @@ import Container from "../components/Container.jsx";
 import {addAlbum} from "../api/albums.js";
 import sprite from "../assets/symbol-defs.svg";
 import {getAllPerformers} from "../api/performer.js";
+import {throttle} from "lodash";
 
 const AlbumsCreate = () => {
     const [formData, setFormData] = useState({
@@ -58,9 +59,7 @@ const AlbumsCreate = () => {
         setFormData((prevData) => ({...prevData, [name]: value}));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
+    const submitForm = async () => {
         if (formData.performer_id === null) {
             toast.error("Choose album's performer!", {
                 theme: "dark",
@@ -93,6 +92,13 @@ const AlbumsCreate = () => {
         }
     };
 
+    const throttledSubmit = throttle(submitForm, 5000, { leading: true, trailing: false });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        throttledSubmit();
+    };
+
     return (
         <Container>
             <div className='albumCreate-wrapper'>
@@ -108,7 +114,7 @@ const AlbumsCreate = () => {
                         <form
                             id="albumCreateForm"
                             className="albumCreate-form"
-                            onSubmit={handleSubmit}
+                            onSubmit={onSubmit}
                         >
                             <div className="albumCreate-form--container">
                                 <label

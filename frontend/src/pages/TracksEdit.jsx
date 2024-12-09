@@ -7,8 +7,9 @@ import {addSong, updateSong} from "../api/songs.js";
 import sprite from "../assets/symbol-defs.svg";
 import {getAllPerformers} from "../api/performer.js";
 import {getAllAlbums} from "../api/albums.js";
+import {throttle} from "lodash";
 
-const TracksCreate = () => {
+const TracksEdit = () => {
     const {id} = useParams();
     const [formData, setFormData] = useState({
         title: null,
@@ -94,16 +95,7 @@ const TracksCreate = () => {
         }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (formData.performer_id === null) {
-            toast.error("Choose track's performer!", {
-                theme: "dark",
-            });
-            return;
-        }
-
+    const submitForm = async (e) => {
         if (!id) {
             toast.error("No song id!", {
                 theme: "dark",
@@ -125,6 +117,13 @@ const TracksCreate = () => {
         }
     };
 
+    const throttledSubmit = throttle(submitForm, 5000, { leading: true, trailing: false });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        throttledSubmit();
+    };
+
     return (
         <Container>
             <div className='trackCreate-wrapper'>
@@ -140,14 +139,14 @@ const TracksCreate = () => {
                         <form
                             id="trackCreateForm"
                             className="trackCreate-form"
-                            onSubmit={handleSubmit}
+                            onSubmit={onSubmit}
                         >
                             <div className="trackCreate-form--container">
                                 <label
                                     className="trackCreate-form--label"
                                     htmlFor="title"
                                 >
-                                    Title: *
+                                    Title: 
                                 </label>
                                 <input
                                     className="trackCreate-form--input"
@@ -163,7 +162,7 @@ const TracksCreate = () => {
                                     className="trackCreate-form--label"
                                     htmlFor="duration"
                                 >
-                                    Duration (in sec): *
+                                    Duration (in sec): 
                                 </label>
                                 <input
                                     className="trackCreate-form--input"
@@ -180,7 +179,7 @@ const TracksCreate = () => {
                                     className="trackCreate-form--label"
                                     htmlFor="release_date"
                                 >
-                                    Release date: *
+                                    Release date: 
                                 </label>
                                 <input
                                     className="trackCreate-form--input"
@@ -194,7 +193,7 @@ const TracksCreate = () => {
                             </div>
                             <div className="trackCreate-form--container">
                                 <label className="trackCreate-form--label" htmlFor="performer_id">
-                                    Performer: *
+                                    Performer: 
                                 </label>
                                 <input
                                     type="text"
@@ -284,4 +283,4 @@ const TracksCreate = () => {
     );
 };
 
-export default TracksCreate;
+export default TracksEdit;

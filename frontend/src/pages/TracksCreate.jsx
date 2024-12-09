@@ -7,6 +7,7 @@ import {addSong} from "../api/songs.js";
 import sprite from "../assets/symbol-defs.svg";
 import {getAllPerformers} from "../api/performer.js";
 import {getAllAlbums} from "../api/albums.js";
+import {throttle} from "lodash";
 
 const TracksCreate = () => {
     const [formData, setFormData] = useState({
@@ -99,9 +100,7 @@ const TracksCreate = () => {
         }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
+    const submitForm = async (e) => {
         if (formData.performer_id === null) {
             toast.error("Choose track's performer!", {
                 theme: "dark",
@@ -139,6 +138,13 @@ const TracksCreate = () => {
         }
     };
 
+    const throttledSubmit = throttle(submitForm, 5000, { leading: true, trailing: false });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        throttledSubmit();
+    };
+
     return (
         <Container>
             <div className='trackCreate-wrapper'>
@@ -154,7 +160,7 @@ const TracksCreate = () => {
                         <form
                             id="trackCreateForm"
                             className="trackCreate-form"
-                            onSubmit={handleSubmit}
+                            onSubmit={onSubmit}
                         >
                             <div className="trackCreate-form--container">
                                 <label

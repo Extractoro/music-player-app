@@ -4,6 +4,7 @@ import "../styles/pages/ForgetPassword.css";
 import {requestPasswordReset} from "../api/auth.js";
 import Container from "../components/Container.jsx";
 import {Link} from "react-router-dom";
+import {throttle} from "lodash";
 
 const ForgetPassword = () => {
     const [formData, setFormData] = useState({ email: "" });
@@ -12,10 +13,8 @@ const ForgetPassword = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
+    const submitForm = async (e) => {
+        try {z
             const response = await requestPasswordReset(formData.email);
             toast.success(response.message || "Password reset link sent to your email.", {
                 theme: "dark",
@@ -27,6 +26,13 @@ const ForgetPassword = () => {
         }
     };
 
+    const throttledSubmit = throttle(submitForm, 5000, { leading: true, trailing: false });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        throttledSubmit();
+    };
+
     return (
         <Container>
             <div className="forgetPassword">
@@ -35,7 +41,7 @@ const ForgetPassword = () => {
                     <form
                         id="forgetPasswordForm"
                         className="forgetPassword-form"
-                        onSubmit={handleSubmit}
+                        onSubmit={onSubmit}
                     >
                         <div className="forgetPassword-form--container">
                             <label
