@@ -1,0 +1,214 @@
+.trackById {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    gap: 2rem;
+    height: 100%;
+    width: 100%;
+}
+
+.trackById-container {
+    width: 100%;
+}
+
+.trackById-wrapper {
+    gap: 3rem;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 0;
+}
+
+.trackById-title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 125%;
+    margin-bottom: 1.5rem;
+}
+
+.trackById-back--icon {
+    width: 30px;
+    height: 30px;
+    stroke: #fcfcfc;
+
+    transition: .3s ease-in-out;
+}
+
+.trackById-link--back {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fcfcfc;
+}
+
+.trackById-album-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1
+}
+
+.trackById-card {
+    background: #212124;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 42px rgba(0, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.trackById-album-photo {
+    width: 100%;
+    max-width: 230px;
+    max-height: 230px;
+    height: 230px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    object-fit: cover;
+    box-shadow: 0 7px 26px rgba(0, 0, 0, 0.6);
+}
+
+.trackById-album-performerPhoto {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.trackById-performer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.trackById-performer,
+.trackById-album,
+.trackById-release-date,
+.trackById-duration {
+    font-size: 16px;
+    margin: 0.5rem 0;
+    color: #fcfcfc;
+}
+
+.trackById-album-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.trackById-add-playlist {
+    position: relative;
+}
+
+.trackById-album-button {
+    display: flex;
+    background-color: #D1AFFF;
+    border: none;
+    outline: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: .3s ease-in-out;
+    align-items: center;
+    justify-content: center;
+}
+
+.trackById-album-button-icon {
+    fill: #171719;
+    transition: 0.3s ease-in-out;
+}
+
+.trackById-album-button:hover {
+    background-color: #a766ff;
+}
+
+.trackById-album-button:hover .trackById-album-button-icon {
+    fill: #FCFCFC;
+}
+
+.trackById-playlist-menu {
+    position: absolute;
+    top: -113px;
+    left: -20px;
+    background-color: #333;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 200px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    height: 100px;
+}
+
+.trackById-playlist-item {
+    background: none;
+    color: #fcfcfc;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.trackById-playlist-item:hover {
+    background-color: #555;
+}
+
+.trackById-playlist-delete--modal {
+    position: absolute;
+    top: -9.5rem;
+    left: -7rem;
+    background-color: #333;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 200px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.trackById-delete-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.trackById-delete-button {
+    background-color: #D1AFFF;
+    outline: none;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+}
+
+.addIconPlaylist {
+    rotate: -135deg;
+}
+
+@media (min-width: 600px) {
+    .trackById-card {
+        max-width: 100%;
+        padding: 1.5rem;
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .trackById-title {
+        font-size: 1.5rem;
+    }
+
+    .trackById-album-photo {
+        margin-bottom: 0;
+    }
+
+    .trackById-album-buttons {
+        flex-direction: column;
+        gap: 1.5rem;
+        width: auto;
+    }
+
+    .trackById-playlist-menu {
+        top: 0;
+        left: -13.5rem;
+    }
+}

@@ -22,9 +22,9 @@ export const createPlaylist = async (formData) => {
     }
 };
 
-export const addSongToPlaylist = async (id, formData) => {
+export const addSongToPlaylist = async (id, songId) => {
     try {
-        const response = await axios.post(`${API_URL}/playlists/${id}/songs`, formData);
+        const response = await axios.post(`${API_URL}/playlists/${id}/songs`, {song_id: songId});
         return response.data;
     } catch (error) {
         throw error.response?.data || error.message;

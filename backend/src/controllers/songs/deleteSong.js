@@ -20,6 +20,11 @@ export const deleteSongController = async (req, res) => {
         const photoId = song[0].photo_id;
 
         await connection.query(
+            "DELETE FROM songs_in_playlists WHERE song_id = ?",
+            [id]
+        );
+
+        await connection.query(
             "DELETE FROM songs WHERE song_id = ?",
             [id]
         );

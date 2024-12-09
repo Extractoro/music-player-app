@@ -20,6 +20,8 @@ import PlaylistsCreate from "./pages/PlaylistsCreate.jsx";
 import AlbumsCreate from "./pages/AlbumsCreate.jsx";
 import TracksCreate from "./pages/TracksCreate.jsx";
 import PerformersCreate from "./pages/PerformersCreate.jsx";
+import TrackById from "./pages/TrackById.jsx";
+import TracksEdit from "./pages/TracksEdit.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -37,7 +39,8 @@ const router = createBrowserRouter(
 
                 <Route path="/tracks" element={<Tracks />} />
                 <Route path="/track/create-track" element={<TracksCreate />} />
-                {/*<Route path='/song/:song_id' element={}/>*/}
+                <Route path='/track/:song_id' element={<TrackById />}/>
+                <Route path="/track/edit-track/:id" element={<TracksEdit />} />
 
                 <Route path="/performers" element={<Performers />} />
                 <Route path="/performer/create-performer" element={<PerformersCreate />} />

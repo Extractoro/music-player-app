@@ -23,13 +23,15 @@ export const getSongByIdController = async (req, res) => {
                     WHEN p.type = 'group' THEN mg.name
                     ELSE NULL
                 END AS performer_name,
-                ph.path AS performer_photo
+                ph.path AS performer_photo,
+                song_ph.path AS song_photo
             FROM songs s
             LEFT JOIN albums a ON s.album_id = a.album_id
             JOIN performer p ON s.performer_id = p.performer_id
             LEFT JOIN artists ar ON p.performer_id = ar.performer_id
             LEFT JOIN music_groups mg ON p.performer_id = mg.performer_id
             LEFT JOIN photo ph ON p.photo_id = ph.photo_id
+            LEFT JOIN photo song_ph ON s.photo_id = song_ph.photo_id
             WHERE s.song_id = ?
         `, [id]);
 

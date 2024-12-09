@@ -93,7 +93,7 @@ const Tracks = () => {
                                                                 path,
                                                                 performer_name,
                                                             }) => (
-                                            <Link to={`/song/${song_id}`} className="main-tracks--card" key={song_id}>
+                                            <Link to={`/track/${song_id}`} className="main-tracks--card" key={song_id}>
                                                 <img
                                                     className="tracks-card--img"
                                                     src={path}
