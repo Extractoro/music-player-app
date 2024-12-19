@@ -8,6 +8,8 @@ const router = express.Router();
 // router.use(authMiddleware)
 // router.use(adminMiddleware)
 
+router.get("/all-groups", controllers.getAllGroupsController);
+
 router.post("/:groupId/add-artists", controllers.addArtistToGroupController);
 
 router.delete("/:groupId/delete-artists/:artistId", controllers.removeArtistFromGroupController);

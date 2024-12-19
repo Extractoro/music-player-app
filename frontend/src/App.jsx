@@ -22,6 +22,10 @@ import TracksCreate from "./pages/TracksCreate.jsx";
 import PerformersCreate from "./pages/PerformersCreate.jsx";
 import TrackById from "./pages/TrackById.jsx";
 import TracksEdit from "./pages/TracksEdit.jsx";
+import PerformerById from "./pages/PerformerById.jsx";
+import PerformersEdit from "./pages/PerformersEdit.jsx";
+import AlbumById from "./pages/AlbumById.jsx";
+import AlbumsEdit from "./pages/AlbumsEdit.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -36,6 +40,8 @@ const router = createBrowserRouter(
 
                 <Route path="/albums" element={<Albums />} />
                 <Route path="/album/create-album" element={<AlbumsCreate />} />
+                <Route path='/album/:id' element={<AlbumById />}/>
+                <Route path="/album/edit-album/:id" element={<AlbumsEdit />} />
 
                 <Route path="/tracks" element={<Tracks />} />
                 <Route path="/track/create-track" element={<TracksCreate />} />
@@ -43,7 +49,10 @@ const router = createBrowserRouter(
                 <Route path="/track/edit-track/:id" element={<TracksEdit />} />
 
                 <Route path="/performers" element={<Performers />} />
+                <Route path="/performer/:id" element={<PerformerById />} />
                 <Route path="/performer/create-performer" element={<PerformersCreate />} />
+                <Route path="/performer/edit-performer/:id/:type" element={<PerformersEdit />} />
+
 
                 {/*<Route path="/admin/">*/}
             </Route>

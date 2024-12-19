@@ -37,6 +37,7 @@ import {deletePlaylistController} from "./playlists/deletePlaylist.js";
 // Groups
 import {addArtistToGroupController} from "./groups/addArtistToGroup.js";
 import {removeArtistFromGroupController} from "./groups/removeArtistFromGroup.js";
+import {getAllGroupsController} from "./groups/getAllGroups.js";
 
 export default {
     signupController,
@@ -71,5 +72,6 @@ export default {
     deletePlaylistController,
 
     addArtistToGroupController,
-    removeArtistFromGroupController
+    removeArtistFromGroupController,
+    getAllGroupsController
 }

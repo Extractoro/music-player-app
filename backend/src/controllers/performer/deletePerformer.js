@@ -16,12 +16,29 @@ export const deletePerformerController = async (req, res) => {
             [id]
         );
 
-        if (!performer.length) {
+        if (performer.length === 0) {
             connection.release();
             return res.status(404).json({ message: "Performer not found." });
         }
 
+        await connection.query("DELETE FROM songs WHERE performer_id = ?", [id])
+
         if (performer[0].type === "artist") {
+            const [artist] = await connection.query(
+                "SELECT * FROM artists WHERE performer_id = ?",
+                [id]
+            );
+
+            if (artist.length === 0) {
+                connection.release();
+                return res.status(404).json({ message: "Artist not found." });
+            }
+
+            await connection.query(
+                "DELETE FROM artists_in_groups WHERE artist_id = ?",
+                [artist[0].artist_id]
+            );
+
             await connection.query("DELETE FROM artists WHERE performer_id = ?", [id]);
         } else if (performer[0].type === "group") {
             await connection.query("DELETE FROM music_groups WHERE performer_id = ?", [id]);
@@ -43,13 +60,23 @@ export const deletePerformerController = async (req, res) => {
             [performer[0].photo_id]
         );
         if (photo.length) {
-            const photoPath = photo[0].path;
-            const publicId = photoPath
-                .split('/')
-                .slice(-1)[0]
-                .split('.')[0];
-            await cloudinary.uploader.destroy(`performers/${publicId}`);
-            await connection.query("DELETE FROM photo WHERE photo_id = ?", [performer[0].photo_id]);
+            try {
+                const photoPath = photo[0].path;
+
+                const publicId = photoPath
+                    .split("/")
+                    .slice(-1)[0]
+                    .split(".")[0];
+
+                await cloudinary.uploader.destroy(`performers/${publicId}`);
+            } catch (cloudinaryError) {
+            }
+
+            try {
+                await connection.query("DELETE FROM photo WHERE photo_id = ?", [performer[0].photo_id]);
+            } catch (sqlError) {
+                throw sqlError;
+            }
         }
 
         await connection.query("DELETE FROM performer WHERE performer_id = ?", [id]);

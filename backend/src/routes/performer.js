@@ -16,7 +16,7 @@ router.get("/get-performer/:id", controllers.getPerformerByIdController);
 
 router.post("/add-performer", upload.single("photo"), controllers.addPerformerController);
 
-router.put("/update-performer/:id", controllers.updatePerformerController);
+router.put("/update-performer/:id", upload.single("photo"), controllers.updatePerformerController);
 
 router.delete("/delete-performer/:id", controllers.deletePerformerController);
 

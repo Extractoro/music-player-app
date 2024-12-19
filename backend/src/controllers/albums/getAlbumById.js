@@ -15,12 +15,14 @@ export const getAlbumByIdController = async (req, res) => {
                 COALESCE(art.artist_id, mg.group_id) AS id,
                 COALESCE(art.name, mg.name) AS performer_name,
                 p.type AS performer_type,
-                ph.path AS album_photo_path
+                ph.path AS album_photo_path,
+                ph_perf.path AS performer_photo_path
             FROM albums a
                      JOIN performer p ON a.performer_id = p.performer_id
                      LEFT JOIN artists art ON p.performer_id = art.performer_id
                      LEFT JOIN music_groups mg ON p.performer_id = mg.performer_id
                      LEFT JOIN photo ph ON a.photo_id = ph.photo_id
+                     LEFT JOIN photo ph_perf ON p.photo_id = ph_perf.photo_id
             WHERE a.album_id = ?;
         `, [id]);
 

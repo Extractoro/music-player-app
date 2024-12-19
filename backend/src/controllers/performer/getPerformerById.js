@@ -21,7 +21,7 @@ export const getPerformerByIdController = async (req, res) => {
 
         if (performerData.type === "artist") {
             const [artist] = await connection.query(
-                "SELECT name, birthday_date, bio, career_started_date FROM artists WHERE performer_id = ?",
+                "SELECT artist_id, name, birthday_date, bio, career_started_date FROM artists WHERE performer_id = ?",
                 [id]
             );
             if (artist.length > 0) {
@@ -29,7 +29,7 @@ export const getPerformerByIdController = async (req, res) => {
             }
         } else if (performerData.type === "group") {
             const [group] = await connection.query(
-                "SELECT name, year_created, bio FROM music_groups WHERE performer_id = ?",
+                "SELECT group_id, name, year_created, bio FROM music_groups WHERE performer_id = ?",
                 [id]
             );
             if (group.length > 0) {

@@ -99,7 +99,7 @@ const Home = () => {
                                                             photo_path,
                                                             performer_name,
                                                         }) => (
-                                        <Link to={`/song/${album_id}`} className="main-tracks--card" key={album_id}>
+                                        <Link to={`/album/${album_id}`} className="main-tracks--card" key={album_id}>
                                             <img
                                                 className="tracks-card--img"
                                                 src={photo_path}

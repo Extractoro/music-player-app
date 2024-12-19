@@ -16,7 +16,7 @@ router.use(adminMiddleware)
 
 router.post("/add-album", upload.single("photo"), controllers.addAlbumController);
 
-router.put("/update-album/:id", controllers.updateAlbumController);
+router.put("/update-album/:id", upload.single("photo"), controllers.updateAlbumController);
 
 router.delete("/delete-album/:id", controllers.deleteAlbumController);
 
