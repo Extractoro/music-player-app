@@ -13,6 +13,16 @@ export const getUserPlaylists = async (id) => {
     }
 };
 
+export const getSongsInPlaylist = async (id) => {
+    try {
+        const response = await axios.get(`${API_URL}/playlists/${id}/songs`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching songs:', error);
+        throw error;
+    }
+};
+
 export const createPlaylist = async (formData) => {
     try {
         const response = await axios.post(`${API_URL}/playlists/create-playlist`, formData);

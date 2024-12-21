@@ -16,7 +16,6 @@ const AlbumById = () => {
     const {id} = useParams();
     const [album, setAlbum] = useState([]);
     const [userId, setUserId] = useState(getUserId());
-    const [playlists, setPlaylists] = useState([]);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
@@ -29,15 +28,6 @@ const AlbumById = () => {
             toast.error(error.message || "An error occurred during getting data.", {
                 theme: "dark"
             });
-        }
-    };
-
-    const fetchPlaylists = async () => {
-        try {
-            const data = await getUserPlaylists(userId);
-            setPlaylists(data);
-        } catch (error) {
-            toast.error("Failed to load playlists.", {theme: "dark"});
         }
     };
 

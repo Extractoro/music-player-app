@@ -2,9 +2,9 @@ import './App.css'
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute.jsx";
 import PublicRoute from "./utils/PublicRoute.jsx";
-import Signup from "./pages/Signup.jsx";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Signup from "./pages/Signup.jsx";
 import Signin from "./pages/Signin.jsx";
 import Home from "./pages/Home.jsx";
 import VerifyEmail from "./pages/VerifyEmail.jsx";
@@ -14,7 +14,6 @@ import Profile from "./pages/Profile.jsx";
 import Albums from "./pages/Albums.jsx";
 import Tracks from "./pages/Tracks.jsx";
 import Performers from "./pages/Performers.jsx";
-import ProfileEdit from "./pages/ProfileEdit.jsx";
 import Playlists from "./pages/Playlists.jsx";
 import PlaylistsCreate from "./pages/PlaylistsCreate.jsx";
 import AlbumsCreate from "./pages/AlbumsCreate.jsx";
@@ -26,6 +25,7 @@ import PerformerById from "./pages/PerformerById.jsx";
 import PerformersEdit from "./pages/PerformersEdit.jsx";
 import AlbumById from "./pages/AlbumById.jsx";
 import AlbumsEdit from "./pages/AlbumsEdit.jsx";
+import PlaylistById from "./pages/PlaylistById.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -37,6 +37,7 @@ const router = createBrowserRouter(
 
                 <Route path="/playlists" element={<Playlists />} />
                 <Route path="/playlist/create-playlist" element={<PlaylistsCreate />} />
+                <Route path='/playlist/:id' element={<PlaylistById />}/>
 
                 <Route path="/albums" element={<Albums />} />
                 <Route path="/album/create-album" element={<AlbumsCreate />} />

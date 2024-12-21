@@ -41,19 +41,45 @@ export const deletePerformerController = async (req, res) => {
 
             await connection.query("DELETE FROM artists WHERE performer_id = ?", [id]);
         } else if (performer[0].type === "group") {
-            await connection.query("DELETE FROM music_groups WHERE performer_id = ?", [id]);
+            const [group] = await connection.query(
+                "SELECT * FROM music_groups WHERE performer_id = ?",
+                [id]
+            );
+
+            if (group.length === 0) {
+                connection.release();
+                return res.status(404).json({ message: "Group not found." });
+            }
+
+            await connection.query(
+                "DELETE FROM artists_in_groups WHERE group_id = ?",
+                [group[0].group_id]
+            );
+
+            await connection.query(
+                "DELETE FROM music_groups WHERE performer_id = ?",
+                [id]
+            );
         }
+
+        console.log('sdfgsdfsdf')
+        
 
         const [albums] = await connection.query(
             "SELECT album_id FROM albums WHERE performer_id = ?",
             [id]
         );
 
+        console.log('sdfgsdfsdf')
+
+
         if (albums.length) {
             const albumIds = albums.map((album) => album.album_id);
             await connection.query("DELETE FROM songs WHERE album_id IN (?)", [albumIds]);
             await connection.query("DELETE FROM albums WHERE performer_id = ?", [id]);
         }
+
+        console.log('sdfgsdfsdf')
 
         const [photo] = await connection.query(
             "SELECT path FROM photo WHERE photo_id = ?",
@@ -68,10 +94,14 @@ export const deletePerformerController = async (req, res) => {
                     .slice(-1)[0]
                     .split(".")[0];
 
-                await cloudinary.uploader.destroy(`performers/${publicId}`);
+                await cloudinary.uploader.destroy(`songs/${publicId}`);
             } catch (cloudinaryError) {
+                console.log(cloudinaryError)
+
             }
 
+            
+            
             try {
                 await connection.query("DELETE FROM photo WHERE photo_id = ?", [performer[0].photo_id]);
             } catch (sqlError) {
@@ -84,6 +114,6 @@ export const deletePerformerController = async (req, res) => {
         connection.release();
         res.status(200).json({ message: "Performer deleted successfully!" });
     } catch (error) {
-        res.status(500).json({ message: "Internal server error." });
+        res.status(500).json({ message: "Internal server error.", error });
     }
 };

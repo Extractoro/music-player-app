@@ -33,6 +33,7 @@ import {getUserPlaylistsController} from "./playlists/getUserPlaylists.js";
 import {addSongToPlaylistController} from "./playlists/addSongToPlaylist.js";
 import {removeSongFromPlaylistController} from "./playlists/removeSongFromPlaylist.js";
 import {deletePlaylistController} from "./playlists/deletePlaylist.js";
+import {getSongsInPlaylist} from "./playlists/getSongsInPlaylist.js";
 
 // Groups
 import {addArtistToGroupController} from "./groups/addArtistToGroup.js";
@@ -70,6 +71,7 @@ export default {
     addSongToPlaylistController,
     removeSongFromPlaylistController,
     deletePlaylistController,
+    getSongsInPlaylist,
 
     addArtistToGroupController,
     removeArtistFromGroupController,

@@ -94,7 +94,7 @@ const Playlists = () => {
                                                         {song_count} songs
                                                     </p>
                                                     <p className="tracks-card--performer">
-                                                        {duration} seconds
+                                                        {Math.floor(duration / 60)} minutes
                                                     </p>
                                                 </div>
                                             </Link>

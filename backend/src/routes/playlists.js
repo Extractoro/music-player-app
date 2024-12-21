@@ -10,6 +10,8 @@ router.post("/create-playlist", controllers.createPlaylistController);
 
 router.get("/user-playlists/:id", controllers.getUserPlaylistsController);
 
+router.get("/:id/songs", controllers.getSongsInPlaylist);
+
 router.post("/:id/songs", controllers.addSongToPlaylistController);
 
 router.delete("/:id/songs/:songId", controllers.removeSongFromPlaylistController);
