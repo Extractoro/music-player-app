@@ -26,6 +26,7 @@ import PerformersEdit from "./pages/PerformersEdit.jsx";
 import AlbumById from "./pages/AlbumById.jsx";
 import AlbumsEdit from "./pages/AlbumsEdit.jsx";
 import PlaylistById from "./pages/PlaylistById.jsx";
+import Statistics from "./pages/Statistics.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
             <Route element={<PrivateRoute />}>
                 <Route index element={<Home />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/statistics" element={<Statistics />} />
                 {/*<Route path="/profile/edit-profile" element={<ProfileEdit />} />*/}
 
                 <Route path="/playlists" element={<Playlists />} />

@@ -4,6 +4,7 @@ import sprite from "../assets/symbol-defs.svg";
 import {getUserPlaylists} from "../api/playlists.js";
 import {toast} from "react-toastify";
 import {handleLogout} from "../utils/handleLogout.js";
+import {isAdmin} from "../utils/isAdmin.js";
 
 const Aside = ({isAsideOpen, setIsMenuOpen, handleToggleMenu, isMenuOpen}) => {
     const navigate = useNavigate();
@@ -57,25 +58,29 @@ const Aside = ({isAsideOpen, setIsMenuOpen, handleToggleMenu, isMenuOpen}) => {
                     <div className="aside-collection">
                         <h3 className="aside-collection--title">My Collection</h3>
                         <div className="aside-collection--container">
-                            <Link to={`/playlists`} className={`aside-collection--link ${isActive('/playlists') ? 'active' : ''}`}>
+                            <Link to={`/playlists`}
+                                  className={`aside-collection--link ${isActive('/playlists') ? 'active' : ''}`}>
                                 <svg className="aside-collection--icon">
                                     <use href={`${sprite}#playlists`}></use>
                                 </svg>
                                 Playlists
                             </Link>
-                            <Link to={`/albums`} className={`aside-collection--link ${isActive('/albums') ? 'active' : ''}`}>
+                            <Link to={`/albums`}
+                                  className={`aside-collection--link ${isActive('/albums') ? 'active' : ''}`}>
                                 <svg className="aside-collection--icon">
                                     <use href={`${sprite}#albums`}></use>
                                 </svg>
                                 Albums
                             </Link>
-                            <Link to={`/tracks`} className={`aside-collection--link ${isActive('/tracks') ? 'active' : ''}`}>
+                            <Link to={`/tracks`}
+                                  className={`aside-collection--link ${isActive('/tracks') ? 'active' : ''}`}>
                                 <svg className="aside-collection--icon">
                                     <use href={`${sprite}#tracks`}></use>
                                 </svg>
                                 Tracks
                             </Link>
-                            <Link to={`/performers`} className={`aside-collection--link ${isActive('/performers') ? 'active' : ''}`}>
+                            <Link to={`/performers`}
+                                  className={`aside-collection--link ${isActive('/performers') ? 'active' : ''}`}>
                                 <svg className="aside-collection--icon">
                                     <use href={`${sprite}#artists`}></use>
                                 </svg>
@@ -104,9 +109,13 @@ const Aside = ({isAsideOpen, setIsMenuOpen, handleToggleMenu, isMenuOpen}) => {
             {/* Menu */}
             <div className={`menu ${isMenuOpen ? 'open' : ''}`}>
                 <ul className="menu-list">
+                    {isAdmin() === 'admin' && (
+                        <li className="list-item">
+                            <Link to={`/statistics`} className="list-item--button">Statistics</Link>
+                        </li>
+                    )}
                     <li className="list-item">
-                        <button onClick={logoutClick} className="list-item--button">Log Out
-                        </button>
+                        <button onClick={logoutClick} className="list-item--button">Log Out</button>
                     </li>
                 </ul>
             </div>

@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import {currentUser} from "../api/auth.js";
-import {toast} from "react-toastify";
 import Aside from "../components/Aside.jsx";
 import Header from "../components/Header.jsx";
-import '../styles/pages/Profile.css'
-import {Link} from "react-router-dom";
+import {currentUser} from "../api/auth.js";
+import {toast} from "react-toastify";
 
-const Profile = () => {
+const Statistics = () => {
     const [user, setUser] = useState([]);
 
     const loadData = async () => {
@@ -62,15 +60,7 @@ const Profile = () => {
                     <div className="main-home">
                         <div className="main-tracks">
                             <h2 className="main-tracks--title">Profile</h2>
-                            <div className='profile'>
-                                <div className='profile-container'>
-                                    <p className='profile-text'>Username: <span
-                                        className='profile-text--span'>{user?.data?.username}</span></p>
-                                    <p className='profile-text'>Email: <span
-                                        className='profile-text--span'>{user?.data?.email}</span></p>
-                                </div>
-                                {/*<Link to={'/profile/edit-profile'} className='profile-link'>Edit profile</Link>*/}
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -78,4 +68,4 @@ const Profile = () => {
         </div>
     )
 }
-export default Profile
+export default Statistics

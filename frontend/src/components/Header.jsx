@@ -11,7 +11,7 @@ const Header = ({handleToggleAside}) => {
                     <use href={`${sprite}#menu`}></use>
                 </svg>
             </button>
-            <form method="post" className={`${isProfile('/profile') ? 'displayNone' : 'header-form'}`}>
+            <form method="post" className={`${isProfile('/profile') || isProfile('/statistics') ? 'displayNone' : 'header-form'}`}>
                 <label className="header-form--container">
                     <input
                         className="header-form--input"
