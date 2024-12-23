@@ -7,4 +7,6 @@ router.get("/top-songs", controllers.getTopSongsController);
 
 router.get("/popular-genres", controllers.getPopularGenresController);
 
+router.get("/user-preferences", controllers.getUserPreferencesController);
+
 export default router;

@@ -5,6 +5,7 @@ import {currentUser} from "../api/auth.js";
 import {toast} from "react-toastify";
 import TopSongsChart from "../components/TopSongsChart.jsx";
 import PopularGenresChart from "../components/PopularGenresChart.jsx";
+import UserPreferencesChart from "../components/UserPreferencesChart.jsx";
 
 const Statistics = () => {
     const [user, setUser] = useState([]);
@@ -63,7 +64,11 @@ const Statistics = () => {
                         <div className="main-tracks">
                             <h2 className="main-tracks--title">Statistics</h2>
                             <TopSongsChart/>
+                            <br/>
                             <PopularGenresChart/>
+                            <br/>
+                            <br/>
+                            <UserPreferencesChart/>
                         </div>
                     </div>
                 </div>

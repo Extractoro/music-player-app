@@ -43,6 +43,7 @@ import {getAllGroupsController} from "./groups/getAllGroups.js";
 // Statistics
 import {getTopSongsController} from "./statistics/getTopSongs.js";
 import {getPopularGenresController} from "./statistics/getPopularGenres.js";
+import {getUserPreferencesController} from "./statistics/getUserPreferences.js";
 
 export default {
     signupController,
@@ -83,4 +84,5 @@ export default {
 
     getTopSongsController,
     getPopularGenresController,
+    getUserPreferencesController
 }

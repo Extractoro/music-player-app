@@ -11,6 +11,7 @@ import '../styles/pages/Performers.css'
 const Performers = () => {
     const [itemOffset, setItemOffset] = useState(0);
     const [performers, setPerformers] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const loadData = async () => {
         try {
@@ -23,6 +24,11 @@ const Performers = () => {
             });
         }
     };
+
+    const filteredPerformers = performers.filter(({ artistDetails, groupDetails, type }) => {
+        const name = type === "artist" ? artistDetails?.name : groupDetails?.name || "";
+        return name.toLowerCase().includes(searchQuery.toLowerCase());
+    });
 
     const [isAsideOpen, setIsAsideOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,11 +61,11 @@ const Performers = () => {
 
     const itemsPerPage = 8;
     const endOffset = itemOffset + itemsPerPage;
-    const currentItems = performers?.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(performers?.length / itemsPerPage);
+    const currentItems = filteredPerformers?.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(filteredPerformers?.length / itemsPerPage);
 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % performers?.length;
+        const newOffset = (event.selected * itemsPerPage) % filteredPerformers?.length;
         setItemOffset(newOffset);
     };
 
@@ -71,7 +77,7 @@ const Performers = () => {
 
                 <div className={`main ${isAsideOpen ? "shift" : ""}`}>
                     <div className="main-container container">
-                        <Header handleToggleAside={handleToggleAside}/>
+                        <Header handleToggleAside={handleToggleAside} setSearchQuery={setSearchQuery} />
 
                         <div className="main-home">
                             <div className="main-tracks">
@@ -110,7 +116,7 @@ const Performers = () => {
                             </div>
                         </div>
                         {
-                            performers?.length > itemsPerPage && (<ReactPaginate
+                            filteredPerformers?.length > itemsPerPage && (<ReactPaginate
                                 breakLabel="..."
                                 nextLabel="Next >"
                                 onPageChange={handlePageClick}

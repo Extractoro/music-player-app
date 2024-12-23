@@ -14,6 +14,7 @@ import {isAdmin} from "../utils/isAdmin.js";
 const Tracks = () => {
     const [itemOffset, setItemOffset] = useState(0);
     const [songs, setSongs] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const loadData = async () => {
         try {
@@ -26,6 +27,10 @@ const Tracks = () => {
             });
         }
     };
+
+    const filteredTracks = songs?.data?.filter((track) => {
+        return track?.title.toLowerCase().includes(searchQuery.toLowerCase());
+    });
 
     const [isAsideOpen, setIsAsideOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,11 +63,11 @@ const Tracks = () => {
 
     const itemsPerPage = 8;
     const endOffset = itemOffset + itemsPerPage;
-    const currentItems = songs?.data?.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(songs?.data?.length / itemsPerPage);
+    const currentItems = filteredTracks?.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(filteredTracks?.length / itemsPerPage);
 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % songs?.data?.length;
+        const newOffset = (event.selected * itemsPerPage) % filteredTracks?.length;
         setItemOffset(newOffset);
     };
 
@@ -74,7 +79,7 @@ const Tracks = () => {
 
                 <div className={`main ${isAsideOpen ? "shift" : ""}`}>
                     <div className="main-container container">
-                        <Header handleToggleAside={handleToggleAside}/>
+                        <Header handleToggleAside={handleToggleAside} setSearchQuery={setSearchQuery}/>
 
                         <div className="main-home">
                             <div className="main-tracks">
@@ -112,7 +117,7 @@ const Tracks = () => {
                             </div>
                         </div>
                         {
-                            songs?.data?.length > itemsPerPage && (<ReactPaginate
+                            filteredTracks?.length > itemsPerPage && (<ReactPaginate
                                 breakLabel="..."
                                 nextLabel="Next >"
                                 onPageChange={handlePageClick}

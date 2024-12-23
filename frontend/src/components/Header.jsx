@@ -1,8 +1,12 @@
 import React from 'react'
 import sprite from "../assets/symbol-defs.svg";
 
-const Header = ({handleToggleAside}) => {
-    const isProfile = (path) => location.pathname === path;
+const Header = ({ handleToggleAside, setSearchQuery }) => {
+    const isDisplayNone = (path) => location.pathname === path;
+
+    const handleInputChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
 
     return (
         <header className="main-header">
@@ -11,12 +15,13 @@ const Header = ({handleToggleAside}) => {
                     <use href={`${sprite}#menu`}></use>
                 </svg>
             </button>
-            <form method="post" className={`${isProfile('/profile') || isProfile('/statistics') ? 'displayNone' : 'header-form'}`}>
+            <form method="post" className={`${isDisplayNone('/profile') || isDisplayNone('/statistics') || isDisplayNone('/playlists') ? 'displayNone' : 'header-form'}`}>
                 <label className="header-form--container">
                     <input
                         className="header-form--input"
-                        type="search"
+                        type="text"
                         placeholder="Search..."
+                        onChange={handleInputChange}
                     />
                     <svg className="header-form--search-icon">
                         <use href={`${sprite}#search`}></use>
