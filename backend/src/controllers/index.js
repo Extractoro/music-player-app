@@ -40,6 +40,10 @@ import {addArtistToGroupController} from "./groups/addArtistToGroup.js";
 import {removeArtistFromGroupController} from "./groups/removeArtistFromGroup.js";
 import {getAllGroupsController} from "./groups/getAllGroups.js";
 
+// Statistics
+import {getTopSongsController} from "./statistics/getTopSongs.js";
+import {getPopularGenresController} from "./statistics/getPopularGenres.js";
+
 export default {
     signupController,
     loginController,
@@ -75,5 +79,8 @@ export default {
 
     addArtistToGroupController,
     removeArtistFromGroupController,
-    getAllGroupsController
+    getAllGroupsController,
+
+    getTopSongsController,
+    getPopularGenresController,
 }

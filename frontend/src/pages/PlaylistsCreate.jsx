@@ -9,7 +9,7 @@ import {throttle} from "lodash";
 
 const PlaylistsCreate = () => {
     const [formData, setFormData] = useState({
-        title: "",
+        title: "My playlist",
         description: null,
     });
 

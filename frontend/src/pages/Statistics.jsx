@@ -3,6 +3,8 @@ import Aside from "../components/Aside.jsx";
 import Header from "../components/Header.jsx";
 import {currentUser} from "../api/auth.js";
 import {toast} from "react-toastify";
+import TopSongsChart from "../components/TopSongsChart.jsx";
+import PopularGenresChart from "../components/PopularGenresChart.jsx";
 
 const Statistics = () => {
     const [user, setUser] = useState([]);
@@ -59,8 +61,9 @@ const Statistics = () => {
 
                     <div className="main-home">
                         <div className="main-tracks">
-                            <h2 className="main-tracks--title">Profile</h2>
-
+                            <h2 className="main-tracks--title">Statistics</h2>
+                            <TopSongsChart/>
+                            <PopularGenresChart/>
                         </div>
                     </div>
                 </div>
