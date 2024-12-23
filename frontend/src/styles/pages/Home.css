@@ -153,9 +153,15 @@
     height: 70px;
     padding: 1rem 0;
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    gap: 1rem;
+}
+
+@media screen and (min-width: 530px) {
+    .main-header {
+        justify-content: space-between;
+    }
 }
 
 .aside-toggle {

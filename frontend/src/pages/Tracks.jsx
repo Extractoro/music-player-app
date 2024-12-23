@@ -15,6 +15,7 @@ const Tracks = () => {
     const [itemOffset, setItemOffset] = useState(0);
     const [songs, setSongs] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [searchPerformer, setSearchPerformer] = useState("");
 
     const loadData = async () => {
         try {
@@ -29,7 +30,9 @@ const Tracks = () => {
     };
 
     const filteredTracks = songs?.data?.filter((track) => {
-        return track?.title.toLowerCase().includes(searchQuery.toLowerCase());
+        const titleMatch = track?.title.toLowerCase().includes(searchQuery.toLowerCase());
+        const performerMatch = track?.performer_name.toLowerCase().includes(searchPerformer.toLowerCase());
+        return titleMatch && performerMatch;
     });
 
     const [isAsideOpen, setIsAsideOpen] = useState(false);
@@ -79,7 +82,7 @@ const Tracks = () => {
 
                 <div className={`main ${isAsideOpen ? "shift" : ""}`}>
                     <div className="main-container container">
-                        <Header handleToggleAside={handleToggleAside} setSearchQuery={setSearchQuery}/>
+                        <Header handleToggleAside={handleToggleAside} setSearchQuery={setSearchQuery} setSearchPerformer={setSearchPerformer}/>
 
                         <div className="main-home">
                             <div className="main-tracks">
