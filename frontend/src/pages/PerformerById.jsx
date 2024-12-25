@@ -149,7 +149,7 @@ const PerformerById = () => {
                             <div className='performerById-album-buttons'>
                                 <div className="performerById-add-playlist">
                                     {
-                                        performer?.type === 'artist' && (
+                                        performer?.type === 'artist' && isAdmin() === 'admin' && (
                                         <button className='performerById-album-button'
                                                 onClick={() => setIsModalOpen(!isModalOpen)}>
                                             <IoIosAdd

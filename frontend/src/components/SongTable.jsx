@@ -46,7 +46,7 @@ const SongTable = ({ songs, playlistId }) => {
                         <div className="song-table-cell">#</div>
                         <div className="song-table-cell">Title</div>
                         <div className="song-table-cell">Album</div>
-                        <div className="song-table-cell">Date Added</div>
+                        <div className="song-table-cell">Realise Date</div>
                         <div className="song-table-cell">Duration</div>
                     </div>
                     {songs.map((song, index) => (

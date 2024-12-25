@@ -33,7 +33,6 @@ const PlaylistById = () => {
             const songs = await getSongsInPlaylist(id);
             setSongsInPlaylist(songs);
         } catch (error) {
-            navigate('/playlists')
             toast.error(error.response.data.message || "An error occurred during getting data.", {
                 theme: "dark"
             });

@@ -277,6 +277,7 @@ const PerformersEdit = () => {
                                             value={formData.start_date}
                                             onChange={handleChange}
                                             disabled={!selectedGroup}
+                                            max={new Date().toISOString().split("T")[0]}
                                         />
                                     </div>
 
@@ -292,6 +293,7 @@ const PerformersEdit = () => {
                                             value={formData.end_date}
                                             onChange={handleChange}
                                             disabled={!selectedGroup}
+                                            max={new Date().toISOString().split("T")[0]}
                                         />
                                     </div>
                                 </>
