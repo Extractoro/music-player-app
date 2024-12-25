@@ -26,6 +26,7 @@ const PerformerById = () => {
             const performerData = await getPerformerById(id);
             setPerformer(performerData);
         } catch (error) {
+            navigate('/performers')
             toast.error(error.message || "An error occurred during getting data.", {
                 theme: "dark"
             });
@@ -73,7 +74,7 @@ const PerformerById = () => {
     useEffect(() => {
         loadData();
         fetchGroups();
-    }, []);
+    }, [id]);
 
     return (
         <Container>
@@ -119,6 +120,31 @@ const PerformerById = () => {
                                         <strong>Bio: </strong>{performer?.bio}
                                     </p>)
                                 }
+
+                                {performer?.type === 'artist' && performer?.groups?.length > 0 && (
+                                    <div className="performerById-album">
+                                        <strong>Groups:</strong>
+                                        <ul>
+                                            {performer.groups.map(group => (
+                                                <li key={group.performer_id} style={{marginTop: '10px'}}>
+                                                    <Link className='performerById-link' to={`/performer/${group.performer_id}`}>{group.name}</Link> - Joined: {new Date(group.start_date).toLocaleDateString()} - Ended: {group.end_date ? new Date(group.end_date).toLocaleDateString() : 'Currently Active'}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                                {performer?.type === 'group' && performer?.members?.length > 0 && (
+                                    <div className="performerById-album">
+                                        <strong>Members:</strong>
+                                        <ul>
+                                            {performer.members.map(member => (
+                                                <li key={member.performer_id} style={{marginTop: '10px'}}>
+                                                    <Link className='performerById-link' to={`/performer/${member.performer_id}`}>{member.name}</Link> - Joined: {new Date(member.start_date).toLocaleDateString()} - Ended: {member.end_date ? new Date(member.end_date).toLocaleDateString() : 'Currently Active'}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
                             </div>
                             <div className='performerById-album-buttons'>
                                 <div className="performerById-add-playlist">

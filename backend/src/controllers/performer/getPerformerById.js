@@ -24,16 +24,38 @@ export const getPerformerByIdController = async (req, res) => {
                 "SELECT artist_id, name, birthday_date, bio, career_started_date FROM artists WHERE performer_id = ?",
                 [id]
             );
+
             if (artist.length > 0) {
                 Object.assign(performerData, artist[0]);
+
+                const [groups] = await connection.query(
+                    "SELECT mg.group_id, mg.name, mg.year_created, mg.bio, ag.start_date, ag.end_date, mg.performer_id " +
+                    "FROM artists_in_groups ag " +
+                    "INNER JOIN music_groups mg ON ag.group_id = mg.group_id " +
+                    "WHERE ag.artist_id = ?",
+                    [artist[0].artist_id]
+                );
+
+                performerData.groups = groups;
             }
         } else if (performerData.type === "group") {
             const [group] = await connection.query(
                 "SELECT group_id, name, year_created, bio FROM music_groups WHERE performer_id = ?",
                 [id]
             );
+
             if (group.length > 0) {
                 Object.assign(performerData, group[0]);
+
+                const [members] = await connection.query(
+                    "SELECT a.artist_id, a.name, a.birthday_date, a.bio, a.career_started_date, ag.start_date, ag.end_date, a.performer_id " +
+                    "FROM artists_in_groups ag " +
+                    "INNER JOIN artists a ON ag.artist_id = a.artist_id " +
+                    "WHERE ag.group_id = ?",
+                    [group[0].group_id]
+                );
+
+                performerData.members = members;
             }
         }
 

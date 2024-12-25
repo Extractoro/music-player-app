@@ -23,12 +23,20 @@ const PlaylistById = () => {
             const currentPlaylist = playlistsData?.data?.find(playlist => playlist.playlist_id === Number(id))
             setPlaylist(currentPlaylist);
 
+            if (!currentPlaylist) {
+                navigate('/playlists')
+                toast.error("Playlist not found.", {
+                    theme: "dark"
+                });
+            }
+
             const songs = await getSongsInPlaylist(id);
             setSongsInPlaylist(songs);
         } catch (error) {
-            // toast.error(error.response.data.message || "An error occurred during getting data.", {
-            //     theme: "dark"
-            // });
+            navigate('/playlists')
+            toast.error(error.response.data.message || "An error occurred during getting data.", {
+                theme: "dark"
+            });
         }
     };
 

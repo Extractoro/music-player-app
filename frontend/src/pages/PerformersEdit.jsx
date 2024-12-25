@@ -1,11 +1,11 @@
-import React, { useState} from "react";
+import React, {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import "../styles/pages/PerformersCreate.css";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import Container from "../components/Container.jsx";
 import sprite from "../assets/symbol-defs.svg";
 import {throttle} from "lodash";
-import {updatePerformer} from "../api/performer.js";
+import {getPerformerById, updatePerformer} from "../api/performer.js";
 
 const PerformersEdit = () => {
     const {id, type} = useParams();
@@ -19,13 +19,46 @@ const PerformersEdit = () => {
         year_created: null,
         photo: null,
         bio: null,
+        start_date: null,
+        end_date: null,
     });
+    const [groups, setGroups] = useState([]);
+    const [members, setMembers] = useState([]);
+    const [selectedGroup, setSelectedGroup] = useState("");
+    const [selectedMember, setSelectedMember] = useState("");
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (type === "artist") {
+                    const performerData = await getPerformerById(id);
+                    setGroups(performerData.groups || []);
+                }
+                if (type === "group") {
+                    const performerData = await getPerformerById(id);
+                    setMembers(performerData.members || []);
+                }
+            } catch (error) {
+                toast.error("Failed to fetch data", { theme: "dark" });
+            }
+        };
+
+        fetchData();
+    }, [id, type]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
+
+    const handleGroupChange = (e) => {
+        setSelectedGroup(e.target.value);
+    };
+
+    const handleMemberChange = (e) => {
+        setSelectedMember(e.target.value);
     };
 
     const handleFileChange = (e) => {
@@ -51,9 +84,20 @@ const PerformersEdit = () => {
 
             const allFieldsEmpty = Object.values(formData).every((value) => value === null);
 
-            if (allFieldsEmpty) {
+            if (allFieldsEmpty && !selectedMember) {
                 toast.error("No changes detected.", { theme: "dark" });
                 return;
+            }
+
+            if (selectedGroup) {
+                formDataToSend.append("group_id", selectedGroup);
+            }
+            if (selectedMember) {
+                formDataToSend.append("member_id", selectedMember);
+            }
+            if (selectedGroup && !formData.start_date && !formData.end_date) {
+                toast.error( "Choose start and end dates of group career.", { theme: "dark" });
+                return
             }
 
             Object.entries(formData).forEach(([key, value]) => {
@@ -198,25 +242,101 @@ const PerformersEdit = () => {
                                             max={new Date().getFullYear()}
                                         />
                                     </div>
+
+                                    <div className="performersCreate-form--container">
+                                        <label className="performersCreate-form--label" htmlFor="group">
+                                            Group Participation:
+                                        </label>
+                                        <select
+                                            className="performersCreate-form--select"
+                                            id="group"
+                                            name="group"
+                                            value={selectedGroup}
+                                            onChange={handleGroupChange}
+                                        >
+                                            <option value="" key='default' disabled>
+                                                Select group
+                                            </option>
+                                            {groups.map((group) => (
+                                                <option key={group.group_id} value={group.group_id}>
+                                                    {group.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+                                    <div className="performersCreate-form--container">
+                                        <label className="performersCreate-form--label" htmlFor="start_date">
+                                            Start Date:
+                                        </label>
+                                        <input
+                                            className="performersCreate-form--input"
+                                            type="date"
+                                            id="start_date"
+                                            name="start_date"
+                                            value={formData.start_date}
+                                            onChange={handleChange}
+                                            disabled={!selectedGroup}
+                                        />
+                                    </div>
+
+                                    <div className="performersCreate-form--container">
+                                        <label className="performersCreate-form--label" htmlFor="end_date">
+                                            End Date:
+                                        </label>
+                                        <input
+                                            className="performersCreate-form--input"
+                                            type="date"
+                                            id="end_date"
+                                            name="end_date"
+                                            value={formData.end_date}
+                                            onChange={handleChange}
+                                            disabled={!selectedGroup}
+                                        />
+                                    </div>
                                 </>
                             )}
 
                             {type === "group" && (
-                                <div className="performersCreate-form--container">
-                                    <label className="performersCreate-form--label" htmlFor="year_created">
-                                        Year Created:
-                                    </label>
-                                    <input
-                                        className="performersCreate-form--input"
-                                        type="number"
-                                        id="year_created"
-                                        name="year_created"
-                                        value={formData.year_created}
-                                        onChange={handleChange}
-                                        min="1900"
-                                        max={new Date().getFullYear()}
-                                    />
-                                </div>
+                                <>
+                                    <div className="performersCreate-form--container">
+                                        <label className="performersCreate-form--label" htmlFor="year_created">
+                                            Year Created:
+                                        </label>
+                                        <input
+                                            className="performersCreate-form--input"
+                                            type="number"
+                                            id="year_created"
+                                            name="year_created"
+                                            value={formData.year_created}
+                                            onChange={handleChange}
+                                            min="1900"
+                                            max={new Date().getFullYear()}
+                                        />
+                                    </div>
+
+                                    <div className="performersCreate-form--container">
+                                        <label className="performersCreate-form--label" htmlFor="group">
+                                            Delete from group participation:
+                                        </label>
+                                        <select
+                                            className="performersCreate-form--select"
+                                            id="group"
+                                            name="group"
+                                            value={selectedMember}
+                                            onChange={handleMemberChange}
+                                        >
+                                            <option value="" key='default' disabled>
+                                                Select member, which you want to delete
+                                            </option>
+                                            {members.map((member) => (
+                                                <option key={member.artist_id} value={member.artist_id}>
+                                                    {member.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </>
                             )}
 
                             <div className="performersCreate-form--file-container">

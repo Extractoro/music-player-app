@@ -6,17 +6,13 @@ import '../styles/pages/AlbumById.css';
 import {isAdmin} from "../utils/isAdmin.js";
 import {FaPencil} from "react-icons/fa6";
 import {FaRegTrashAlt} from "react-icons/fa";
-import {getUserId} from "../utils/getUserId.js";
 import {toast} from "react-toastify";
-import {addSongToPlaylist, getUserPlaylists} from "../api/playlists.js";
 import {deleteAlbum, getAlbumById} from "../api/albums.js";
 
 const AlbumById = () => {
     const navigate = useNavigate();
     const {id} = useParams();
     const [album, setAlbum] = useState([]);
-    const [userId, setUserId] = useState(getUserId());
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
     const loadData = async () => {
@@ -26,20 +22,6 @@ const AlbumById = () => {
         } catch (error) {
             navigate('/albums')
             toast.error(error.message || "An error occurred during getting data.", {
-                theme: "dark"
-            });
-        }
-    };
-
-    const handleAddToPlaylist = async (playlistId) => {
-        try {
-            const response = await addSongToPlaylist(playlistId, id);
-            toast.success(response.message || "Song successfully added to playlist!", {
-                theme: "dark"
-            });
-            setIsMenuOpen(false);
-        } catch (error) {
-            toast.error(error.message || "Error in adding song to playlist!", {
                 theme: "dark"
             });
         }
@@ -62,7 +44,6 @@ const AlbumById = () => {
 
     useEffect(() => {
         loadData();
-        fetchPlaylists();
     }, []);
 
     return (

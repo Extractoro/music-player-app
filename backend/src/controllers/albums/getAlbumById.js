@@ -14,6 +14,7 @@ export const getAlbumByIdController = async (req, res) => {
                 a.description,
                 COALESCE(art.artist_id, mg.group_id) AS id,
                 COALESCE(art.name, mg.name) AS performer_name,
+                p.performer_id,
                 p.type AS performer_type,
                 ph.path AS album_photo_path,
                 ph_perf.path AS performer_photo_path
