@@ -103,6 +103,13 @@ const TracksEdit = () => {
             return;
         }
 
+        const allFieldsEmpty = Object.values(formData).every((value) => value === null);
+
+        if (allFieldsEmpty) {
+            toast.error("No changes detected.", { theme: "dark" });
+            return;
+        }
+
         try {
             const response = await updateSong(id, formData);
             toast.success(response.message || "You have successfully created track!", {
@@ -209,7 +216,7 @@ const TracksEdit = () => {
                                     value={formData.performer_id}
                                     onChange={handlePerformerChange}
                                 >
-                                    <option value="" disabled>
+                                    <option value="" disabled selected>
                                         Select performer
                                     </option>
                                     {filteredPerformers?.map((performer) => {

@@ -5,11 +5,6 @@ export const updateAlbumController = async (req, res) => {
     const { id } = req.params;
     const { title, release_date, description, performer_id } = req.body;
 
-    console.log(req.body)
-
-
-
-
     try {
         const connection = await getConnection();
 

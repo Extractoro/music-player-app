@@ -74,44 +74,44 @@ const PlaylistById = () => {
                         <div className="playlistById-card">
                             <div style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
                                 <div className='playlistById-album-info'>
-                                <h2 className="playlistById-title">{playlist?.title}</h2>
-                                {playlist?.description !== null &&
-                                    (<p className="playlistById-album">
-                                        <strong>Description: </strong>{playlist?.description}
-                                    </p>)
-                                }
-                                <p className="playlistById-release-date">
-                                    <strong>Songs count: </strong>{playlist?.song_count}
-                                </p>
-                                <p className="playlistById-duration">
-                                    <strong>Duration: </strong>{Math.floor(playlist?.duration / 60)} minutes
-                                </p>
-                            </div>
+                                    <h2 className="playlistById-title">{playlist?.title}</h2>
+                                    {playlist?.description !== null &&
+                                        (<p className="playlistById-album">
+                                            <strong>Description: </strong>{playlist?.description}
+                                        </p>)
+                                    }
+                                    <p className="playlistById-release-date">
+                                        <strong>Songs count: </strong>{playlist?.song_count}
+                                    </p>
+                                    <p className="playlistById-duration">
+                                        <strong>Duration: </strong>{Math.floor(playlist?.duration / 60)} minutes
+                                    </p>
+                                </div>
                                 <div className='playlistById-album-buttons'>
-                                        <div style={{ position: 'relative' }}>
-                                            <button className='playlistById-album-button'
-                                                    onClick={() => setIsModalDeleteOpen(!isModalDeleteOpen)}>
-                                                <FaRegTrashAlt className='playlistById-album-button-icon' size={17}/>
-                                            </button>
-                                            {isModalDeleteOpen && (
-                                                <div className="playlistById-playlist-delete--modal">
-                                                    <p>Are you sure that you want to delete this playlist?</p>
+                                    <div style={{position: 'relative'}}>
+                                        <button className='playlistById-album-button'
+                                                onClick={() => setIsModalDeleteOpen(!isModalDeleteOpen)}>
+                                            <FaRegTrashAlt className='playlistById-album-button-icon' size={17}/>
+                                        </button>
+                                        {isModalDeleteOpen && (
+                                            <div className="playlistById-playlist-delete--modal">
+                                                <p>Are you sure that you want to delete this playlist?</p>
 
-                                                    <div className="playlistById-delete-buttons">
-                                                        <button className='playlistById-delete-button'
-                                                                onClick={handleDeletePlaylist}>Yes
-                                                        </button>
-                                                        <button className='playlistById-delete-button'
-                                                                onClick={() => setIsModalDeleteOpen(false)}>No
-                                                        </button>
-                                                    </div>
+                                                <div className="playlistById-delete-buttons">
+                                                    <button className='playlistById-delete-button'
+                                                            onClick={handleDeletePlaylist}>Yes
+                                                    </button>
+                                                    <button className='playlistById-delete-button'
+                                                            onClick={() => setIsModalDeleteOpen(false)}>No
+                                                    </button>
                                                 </div>
-                                            )}
-                                        </div>
-                            </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                             <div style={{width: '100%'}}>
-                                <SongTable songs={songsInPlaylist} playlistId={id} />
+                                <SongTable songs={songsInPlaylist} playlistId={id}/>
                             </div>
                         </div>
                     </div>

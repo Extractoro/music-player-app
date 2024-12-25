@@ -3,10 +3,10 @@ import { getConnection } from "../../connection.js";
 export const updateSongController = async (req, res) => {
     const { id } = req.params;
     const { title, description, release_date, duration, album_id, performer_id } = req.body;
-
-    if (!title && !description && !release_date && !duration && !album_id && !performer_id) {
-        return res.status(400).json({ message: "No fields to update." });
-    }
+    
+    // if (!title && !description && !release_date && !duration && !album_id && !performer_id) {
+    //     return res.status(400).json({ message: "No fields to update." });
+    // }
 
     if (release_date) {
         const releaseDateObject = new Date(release_date);
@@ -75,7 +75,7 @@ export const updateSongController = async (req, res) => {
                 description = COALESCE(?, description),
                 release_date = COALESCE(?, release_date),
                 duration = COALESCE(?, duration),
-                album_id = COALESCE(?, album_id),
+                album_id = ?,
                 performer_id = COALESCE(?, performer_id)
             WHERE song_id = ?
             `,

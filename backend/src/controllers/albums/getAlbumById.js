@@ -27,15 +27,32 @@ export const getAlbumByIdController = async (req, res) => {
             WHERE a.album_id = ?;
         `, [id]);
 
-        connection.release();
-
         if (albums.length === 0) {
+            connection.release();
             return res.status(404).json({ message: "Album not found." });
         }
 
+        const [songs] = await connection.query(`
+            SELECT
+                s.song_id,
+                s.title AS song_title,
+                s.description AS song_description,
+                s.release_date AS song_release_date,
+                s.duration,
+                ph.path
+            FROM songs s
+                     JOIN photo ph ON s.photo_id = ph.photo_id
+            WHERE s.album_id = ?;
+        `, [id]);
+
+        connection.release();
+
         res.status(200).json({
             message: "Album retrieved successfully.",
-            data: albums[0],
+            data: {
+                ...albums[0],
+                songs: songs,
+            },
         });
     } catch (error) {
         console.error("Error retrieving album:", error);

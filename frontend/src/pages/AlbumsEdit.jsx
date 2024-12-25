@@ -168,7 +168,7 @@ const AlbumsEdit = () => {
                                     value={formData.performer_id}
                                     onChange={handleChange}
                                 >
-                                    <option value="" disabled>
+                                    <option value="" disabled selected>
                                         Select performer
                                     </option>
                                     {filteredPerformers?.map((performer) => {

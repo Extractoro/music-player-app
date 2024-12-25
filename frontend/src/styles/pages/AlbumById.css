@@ -185,11 +185,17 @@
     rotate: -135deg;
 }
 
+.albumById-album-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-direction: column;
+}
+
 @media (min-width: 600px) {
     .albumById-card {
         max-width: 100%;
         padding: 1.5rem;
-        flex-direction: row;
         gap: 2rem;
     }
 
@@ -205,6 +211,14 @@
         flex-direction: column;
         gap: 1.5rem;
         width: auto;
+    }
+
+    .albumById-album-container {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-direction: row;
     }
 
     .albumById-playlist-menu {

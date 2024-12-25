@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "pm2 start src/index.js --name my-app --watch",
+    "start": "pm2-runtime src/index.js --name my-app",
+    "stop": "pm2 stop my-app"
   },
   "keywords": [],
   "author": "",
