@@ -41,9 +41,12 @@ const AlbumTable = ({songs, albumId}) => {
         setIsModalDeleteOpen(true);
     };
 
-    const handleAddToPlaylist = async (playlistId) => {
+    const handleAddToPlaylist = async (playlistId, songId) => {
+        console.log(playlistId)
+        console.log(songId)
+
         try {
-            const response = await addSongToPlaylist(playlistId, songs[0]?.song_id);
+            const response = await addSongToPlaylist(playlistId, songId);
             toast.success(response.message || "Song successfully added to playlist!", {
                 theme: "dark"
             });
@@ -64,6 +67,11 @@ const AlbumTable = ({songs, albumId}) => {
         }
     };
 
+    const addModal = (songId) => {
+        setIsMenuOpen(!isMenuOpen)
+        setSelectedSongId(songId)
+    }
+
     useEffect(() => {
         fetchPlaylists()
     }, []);
@@ -72,7 +80,7 @@ const AlbumTable = ({songs, albumId}) => {
         <div className="album-table-wrapper">
             {songs.length === 0 ? (
                 <div className="no-songs-message">
-                    <p>You haven't added any songs yet.</p>
+                    <p>Album haven't got any songs.</p>
                 </div>
             ) : (
                 <div className="album-table">
@@ -107,20 +115,26 @@ const AlbumTable = ({songs, albumId}) => {
                             </div>
                             <div className="album-table-cell">
                                 <button className='trackById-album-button'
-                                        onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                        onClick={() => addModal(song?.song_id)}>
                                     <IoIosAdd
                                         className={`trackById-album-button-icon ${isMenuOpen && 'addIconPlaylist'}`}
                                         size={30}/>
                                 </button>
                                 {isMenuOpen && (<div
                                         className="modal-overlay"
-                                        onClick={() => setIsMenuOpen(false)}
+                                        onClick={() => {
+                                            setIsMenuOpen(false)
+                                            setSelectedSongId(null);
+                                        }}
                                     >
                                         <div
                                             className="modal-content"
                                             onClick={(e) => e.stopPropagation()}
                                         >
-                                            <button onClick={() => setIsMenuOpen(false)} style={{
+                                            <button onClick={() => {
+                                                setIsMenuOpen(false)
+                                                setSelectedSongId(null);
+                                            }} style={{
                                                 position: 'absolute',
                                                 top: '0.5rem',
                                                 right: '0.5rem',
@@ -136,7 +150,7 @@ const AlbumTable = ({songs, albumId}) => {
                                                         <button
                                                             key={playlist.playlist_id}
                                                             className="trackById-playlist-item"
-                                                            onClick={() => handleAddToPlaylist(playlist.playlist_id)}
+                                                            onClick={() => handleAddToPlaylist(playlist.playlist_id, selectedSongId)}
                                                         >
                                                             {playlist.title}
                                                         </button>
@@ -152,7 +166,7 @@ const AlbumTable = ({songs, albumId}) => {
                                 {isAdmin() === 'admin' && (
                                     <button
                                         className="album-table-album-button"
-                                        onClick={() => openDeleteModal(song.song_id, song.song_title)}
+                                        onClick={() => openDeleteModal(song?.song_id, song.song_title)}
                                     >
                                         <FaRegTrashAlt className="album-table-album-button-icon" size={17}/>
                                     </button>
@@ -167,7 +181,10 @@ const AlbumTable = ({songs, albumId}) => {
                 isModalDeleteOpen && (
                     <div
                         className="modal-overlay"
-                        onClick={() => setIsModalDeleteOpen(false)}
+                        onClick={() => {
+                            setIsModalDeleteOpen(false)
+                            setSelectedSongId(null);
+                        }}
                     >
                         <div
                             className="modal-content"
@@ -179,7 +196,10 @@ const AlbumTable = ({songs, albumId}) => {
                                 <button className="modal-button" onClick={handleDeleteSongFromAlbum}>
                                     Yes
                                 </button>
-                                <button className="modal-button" onClick={() => setIsModalDeleteOpen(false)}>
+                                <button className="modal-button" onClick={() => {
+                                    setIsModalDeleteOpen(false)
+                                    setSelectedSongId(null);
+                                }}>
                                     No
                                 </button>
                             </div>

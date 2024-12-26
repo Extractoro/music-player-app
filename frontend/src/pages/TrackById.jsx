@@ -99,10 +99,10 @@ const TrackById = () => {
                                 </Link>
                                 {track?.data?.album_title !== null &&
                                     (<p className="trackById-album">
-                                        <strong>Album: </strong>{track?.data?.album_title}
+                                        <strong>Album: </strong><Link to={`/album/${track?.data?.album_id}`}>{track?.data?.album_title}</Link>
                                     </p>)
                                 }
-                                {track?.data?.description !== null &&
+                                {(track?.data?.description !== null && track?.data?.description !== 'null' && track?.data?.description !== '') &&
                                     (<p className="trackById-album">
                                         <strong>Description: </strong>{track?.data?.description}
                                     </p>)

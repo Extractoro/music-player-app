@@ -100,6 +100,17 @@
     position: relative;
 }
 
+.trackById-album a {
+    color: inherit;
+    text-decoration: none;
+    transition: .3s ease-in-out;
+}
+
+.trackById-album a:hover {
+    color: #a766ff;
+    text-decoration: underline;
+}
+
 .trackById-album-button {
     display: flex;
     background-color: #D1AFFF;

@@ -63,17 +63,18 @@ const AlbumsEdit = () => {
         try {
             const formDataToSend = new FormData();
 
-            if (formData?.title === null || formData?.release_date === null || formData?.description === null || formData?.performer_id === null) {
-                toast.error("No changes detected.", {
-                    theme: "dark",
-                });
+            const allFieldsEmpty = Object.values(formData).every((value) => value === null);
+
+            if (allFieldsEmpty) {
+                toast.error("No changes detected.", { theme: "dark" });
                 return;
             }
 
-            formDataToSend.append("title", formData.title);
-            formDataToSend.append("description", formData.description);
-            formDataToSend.append("release_date", formData.release_date);
-            formDataToSend.append("performer_id", formData.performer_id);
+            Object.entries(formData).forEach(([key, value]) => {
+                if (value !== null && value !== undefined && value !== '') {
+                    formDataToSend.append(key, value);
+                }
+            });
 
             if (formData.photo) {
                 formDataToSend.append("photo", formData.photo);

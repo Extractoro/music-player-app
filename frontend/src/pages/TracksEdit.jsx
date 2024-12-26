@@ -96,6 +96,7 @@ const TracksEdit = () => {
     };
 
     const submitForm = async (e) => {
+        const formDataToSend = new FormData();
         if (!id) {
             toast.error("No song id!", {
                 theme: "dark",
@@ -109,6 +110,12 @@ const TracksEdit = () => {
             toast.error("No changes detected.", { theme: "dark" });
             return;
         }
+
+        Object.entries(formData).forEach(([key, value]) => {
+            if (value !== null && value !== undefined && value !== '') {
+                formDataToSend.append(key, value);
+            }
+        });
 
         try {
             const response = await updateSong(id, formData);

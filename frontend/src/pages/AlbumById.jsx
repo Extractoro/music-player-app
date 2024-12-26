@@ -75,12 +75,7 @@ const AlbumById = () => {
                                              alt="performer"/>
                                         {album?.data?.performer_name}
                                     </Link>
-                                    {album?.data?.title !== null &&
-                                        (<p className="albumById-album">
-                                            <strong>Album: </strong>{album?.data?.title}
-                                        </p>)
-                                    }
-                                    {album?.data?.description !== null &&
+                                    {(album?.data?.description !== null && album?.data?.description !== '') &&
                                         (<p className="albumById-album">
                                             <strong>Description: </strong>{album?.data?.description}
                                         </p>)

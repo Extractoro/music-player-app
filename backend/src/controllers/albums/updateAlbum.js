@@ -26,28 +26,33 @@ export const updateAlbumController = async (req, res) => {
             }
         }
 
-        const result = await new Promise((resolve, reject) => {
-            const uploadStream = cloudinary.uploader.upload_stream(
-                {
-                    folder: "albums",
-                    resource_type: "image",
-                    transformation: [{ quality: "auto", fetch_format: "auto" }],
-                },
-                (error, result) => {
-                    if (error) reject("Error uploading to Cloudinary");
-                    resolve(result);
-                }
+        let photoId;
+
+        if (req.file) {
+            const result = await new Promise((resolve, reject) => {
+                const uploadStream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: "albums",
+                        resource_type: "image",
+                        transformation: [{ quality: "auto", fetch_format: "auto" }],
+                    },
+                    (error, result) => {
+                        if (error) reject("Error uploading to Cloudinary");
+                        resolve(result);
+                    }
+                );
+                uploadStream.end(req.file.buffer);
+            });
+
+            const photoPath = result.secure_url;
+
+            const [photoInsert] = await connection.query(
+                "INSERT INTO photo (path) VALUES (?)",
+                [photoPath]
             );
-            uploadStream.end(req.file.buffer);
-        });
 
-        const photoPath = result.secure_url;
-
-        const [photoInsert] = await connection.query(
-            "INSERT INTO photo (path) VALUES (?)",
-            [photoPath]
-        );
-        const photoId = photoInsert.insertId;
+            photoId = photoInsert.insertId;
+        }
 
         await connection.query(
             `
@@ -57,7 +62,7 @@ export const updateAlbumController = async (req, res) => {
                 release_date = COALESCE(?, release_date),
                 description = COALESCE(?, description),
                 performer_id = COALESCE(?, performer_id),
-                photoId = COALESCE(?, photo_id)
+                photo_id = COALESCE(?, photo_id)
             WHERE album_id = ?
             `,
             [title, release_date, description, performer_id, photoId, id]
