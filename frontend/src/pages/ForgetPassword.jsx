@@ -14,7 +14,7 @@ const ForgetPassword = () => {
     };
 
     const submitForm = async (e) => {
-        try {z
+        try {
             const response = await requestPasswordReset(formData.email);
             toast.success(response.message || "Password reset link sent to your email.", {
                 theme: "dark",

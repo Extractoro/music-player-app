@@ -191,7 +191,7 @@ const AlbumTable = ({songs, albumId}) => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <p>Are you sure that you want to delete this song ({selectedSongTitle.trim()}) from
-                                playlist?</p>
+                                album?</p>
                             <div className="modal-buttons">
                                 <button className="modal-button" onClick={handleDeleteSongFromAlbum}>
                                     Yes

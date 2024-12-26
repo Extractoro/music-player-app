@@ -76,11 +76,6 @@ const AlbumsEdit = () => {
                 }
             });
 
-            if (formData.photo) {
-                formDataToSend.append("photo", formData.photo);
-            }
-
-
             const response = await updateAlbum(id, formDataToSend);
             toast.success(response.message || "You have successfully created album!", {
                 theme: "dark",

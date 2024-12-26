@@ -165,7 +165,7 @@ const PerformerById = () => {
                                                  onClick={(e) => e.stopPropagation()}>
                                                 <form onSubmit={(e) => e.preventDefault()}>
                                                     <label>
-                                                        Select Date:
+                                                        Select Start Date:
                                                         <input
                                                             type="date"
                                                             value={selectedDate}
