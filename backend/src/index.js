@@ -14,7 +14,7 @@ import statisticsRouter from "./routes/statistics.js";
 dotenv.config();
 
 const app = express();
-const allowedUrls = ['http://localhost:5173'];
+const allowedUrls = ['http://localhost:5173', 'https://music-player-extractoro.netlify.app/'];
 
 app.use(cors({
     origin: function (origin, callback) {
