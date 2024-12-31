@@ -55,8 +55,8 @@ const TracksCreate = () => {
     };
 
     const filteredAlbums = albums?.data?.filter((album) => {
-        const isPerformerMatch = album?.performer_id === Number(formData.performer_id); // Проверка на принадлежность исполнителю
-        const isSearchMatch = album?.title?.toLowerCase().includes(searchAlbums.toLowerCase()); // Поиск по названию
+        const isPerformerMatch = album?.performer_id === Number(formData.performer_id);
+        const isSearchMatch = album?.title?.toLowerCase().includes(searchAlbums.toLowerCase());
 
         return isPerformerMatch && isSearchMatch; // Условие для фильтрации
     });
