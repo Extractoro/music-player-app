@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "https://kursovawork-d5500927b87d.herokuapp.com/";
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 
