@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from 'js-cookie';
 
-const API_URL = "https://kursovawork-d5500927b87d.herokuapp.com/";
+const API_URL = "https://kursovawork-d5500927b87d.herokuapp.com";
 
 export const signupUser = async (formData) => {
     try {
